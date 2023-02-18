@@ -19,3 +19,5 @@ Nosso sistema tem como objetivo gerenciar as tarefas realizadas em um estabeleci
 + CSS3
 + MySQL 8.0.21
 + JavaScript ES2022
+* XAMPP Version 8.1.6 
+* Node.js v18.14.0
