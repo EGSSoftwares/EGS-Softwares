@@ -73,6 +73,10 @@ app.get('/view/controle_cliente.html', (req, res) => {     //tela do crud de cli
     res.sendFile('/view/controle_cliente.html', { root: '..' });
     console.log("entrou controle");
 })
+app.post('/view/controle_cliente.html', (req, res) => {     //tela do crud de cliente
+    res.sendFile('/view/controle_cliente.html', { root: '..' });
+    console.log("entrou post controle");
+})
 app.get('/view/cadastrar_clientes.html', (req, res) => {   //cadastrando clientes
     res.sendFile('/view/cadastrar_clientes.html', { root: '..' });  //envia formulario
     console.log("entrou cadastrar_cliente");
@@ -117,6 +121,25 @@ app.post('/view/excluirClientePorCpf', async (req, res) => {
     }).catch(function (erro){
         res.redirect("/view/tela_erro.html");
     })})
+
+    app.get('/view/pagina_buscar_cliente.html', (req, res) => {
+        res.sendFile('/view/pagina_buscar_cliente.html', { root: '..' });  //pega nome de cliente no form
+    })
+    app.post('/view/exibirCliente', async (req, res) => {
+        var procura=null;
+        try{
+            await db.sync;
+            console.log("Entrou no exibirCliente");     
+            procura = await cliente.findAll( {where: { nomePessoa: req.body.nomePessoa}}); //faz select
+        }catch(err){
+            res.redirect('/view/tela_erro.html');
+        }
+        console.log(procura);
+        if(procura!= null){
+            res.render("../../view/informacoes_cliente", { pessoas: procura}); //exibe clientes com o nome
+        }
+    })
+
 
 console.log("Server inicializado");
 app.listen(5000, () => console.log("ouvindo porta 5000"));
