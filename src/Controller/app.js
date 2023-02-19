@@ -155,10 +155,10 @@ app.post('/view/excluirClientePorCpf', async (req, res) => {
             bai : procura[0].Bairro,
             log : procura[0].Logradouro,
             cpf: procura[0].CPF,
-            cid: procura[0].Cidade
+            cid: procura[0].Cidade      
         }
         lastpkpessoa= procura[0].idPessoa;
-        res.render("../../view/atualizar_cliente", {pessoa: pessoa});
+        res.render("../../view/atualizar_cliente", {pessoa: pessoa});//gera formulario preenchido
     })
     app.post('/attCliente', async (req, res) => {
         await db.sync;
@@ -172,7 +172,7 @@ app.post('/view/excluirClientePorCpf', async (req, res) => {
         procura.Bairro= req.body.bairro;
         procura.Logradouro= req.body.rua;
         procura.Numero= req.body.num;
-        await procura.save().then(function(){ 
+        await procura.save().then(function(){   //atualiza o que foi modificado
             res.redirect("view/tela_sucesso.html");
         }).catch( function (erro) {
             res.redirect("view/tela_erro.html");
