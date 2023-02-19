@@ -141,5 +141,43 @@ app.post('/view/excluirClientePorCpf', async (req, res) => {
     })
 
 
+    app.get('/view/solicitar_cpf.html', (req, res) => {
+        res.sendFile( '/view/solicitar_cpf.html', { root : '..'})  //solicita cpf
+    })
+    var lastpkpessoa= -1;
+    app.post('/view/atualizar_cliente.ejs', async (req, res ) => {
+        const procura = await cliente.findAll( {where: { CPF: req.body.CPF}});
+        console.log(procura);
+        const pessoa= {
+            nomePessoa: procura[0].nomePessoa,
+            num: procura[0].Numero,
+            tel: procura[0].Telefone,
+            bai : procura[0].Bairro,
+            log : procura[0].Logradouro,
+            cpf: procura[0].CPF,
+            cid: procura[0].Cidade
+        }
+        lastpkpessoa= procura[0].idPessoa;
+        res.render("../../view/atualizar_cliente", {pessoa: pessoa});
+    })
+    app.post('/attCliente', async (req, res) => {
+        await db.sync;
+        const procura =await cliente.findByPk(lastpkpessoa);
+        lastpkpessoa=-1;
+        console.log(procura);
+        procura.nomePessoa= req.body.nomePessoa;
+        procura.CPF=req.body.CPF;
+        procura.Cidade= req.body.cid;
+        procura.Telefone= req.body.tel;
+        procura.Bairro= req.body.bairro;
+        procura.Logradouro= req.body.rua;
+        procura.Numero= req.body.num;
+        await procura.save().then(function(){ 
+            res.redirect("view/tela_sucesso.html");
+        }).catch( function (erro) {
+            res.redirect("view/tela_erro.html");
+        })
+    })
+
 console.log("Server inicializado");
 app.listen(5000, () => console.log("ouvindo porta 5000"));
