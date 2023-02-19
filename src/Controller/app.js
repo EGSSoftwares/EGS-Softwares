@@ -1,7 +1,7 @@
 const express = require('express'); //importando modulos necesarios
 const bp = require('body-parser');
 const morgan = require('morgan');
-const sequelize = require('sequelize');
+const seq = require('sequelize');
 const path = require('path');
 const ejs = require('ejs');
 console.log("req bd")
@@ -21,6 +21,8 @@ app.use(morgan('dev'));
 app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json()); 
 
+
+//enviando arquivos
 app.get('/styleLogin.css', (req, res) => {
     res.sendFile('/view/styleLogin.css', { root: '..' });
 })
@@ -78,7 +80,6 @@ app.get('/view/cadastrar_clientes.html', (req, res) => {   //cadastrando cliente
 
 app.post('/view/addCliente', async (req, res) => {
     console.log("entrou add cliente");
-    //onst op = cliente.addCliente(req,res);
     const result = req.body;
     console.log(result);
     if (result != null) {
@@ -103,6 +104,19 @@ app.post('/view/addCliente', async (req, res) => {
     }
 })
 
+app.get('/view/excluir_cliente.html', (req, res) => {
+    res.sendFile('/view/excluir_cliente.html', { root: '..' });
+    console.log("entrou");
+})
+app.post('/view/excluirClientePorCpf', async (req, res) => {
+    await db.sync();
+    await cliente.destroy({
+        where: {CPF: req.body.CPF }     //exclui cliente de cpf = ao cpf do formulario
+    }).then(function(){
+        res.redirect("/view/tela_sucesso.html");''
+    }).catch(function (erro){
+        res.redirect("/view/tela_erro.html");
+    })})
 
 console.log("Server inicializado");
 app.listen(5000, () => console.log("ouvindo porta 5000"));
