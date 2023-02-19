@@ -61,7 +61,47 @@ app.get('/view/Gerenciamento.html', (req, res) =>{         //tela principal
     res.sendFile('/view/Gerenciamento.html', {root : '..'});
 })  
 
+app.get('/view/tela_sucesso.html', (req, res) =>{      //tela de sucesso
+    res.sendFile('/view/tela_sucesso.html', {root: '..'});
+})
+app.get("/view/tela_erro.html", (req, res) => {        //tela de erro
+    res.sendFile('/view/tela_erro.html', { root:'..' });        
+})
+app.get('/view/controle_cliente.html', (req, res) => {     //tela do crud de cliente
+    res.sendFile('/view/controle_cliente.html', { root: '..' });
+    console.log("entrou controle");
+})
+app.get('/view/cadastrar_clientes.html', (req, res) => {   //cadastrando clientes
+    res.sendFile('/view/cadastrar_clientes.html', { root: '..' });  //envia formulario
+    console.log("entrou cadastrar_cliente");
+})
 
+app.post('/view/addCliente', async (req, res) => {
+    console.log("entrou add cliente");
+    //onst op = cliente.addCliente(req,res);
+    const result = req.body;
+    console.log(result);
+    if (result != null) {
+        await db.sync();
+        await cliente.create({
+            nomePessoa: result.nomePessoa,  //cria novo cliente com informacoes do fomulario
+            CPF: result.CPF,
+            Telefone: result.tel,
+            Bairro: result.bairro,
+            Numero: result.num,
+            Logradouro: result.rua,
+            Cidade: result.cid,
+            tipoFuncionario: 0,
+            tipoCliente: 1
+        }).then(function () {
+            //res.send(req.body.nome + req.body.cpf + "Cadastraddo");   
+            console.log("Entrou no then");
+            res.redirect('/view/tela_sucesso.html');  //se deu certo
+        }).catch(function (erro) {
+            res.redirect("/view/tela_erro.html");  //se deu erro
+        });
+    }
+})
 
 
 console.log("Server inicializado");
