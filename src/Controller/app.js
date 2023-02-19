@@ -1,7 +1,7 @@
 const express = require('express'); //importando modulos necesarios
 const bp = require('body-parser');
 const morgan = require('morgan');
-const { or } = require('sequelize');
+const sequelize = require('sequelize');
 const path = require('path');
 const ejs = require('ejs');
 console.log("req bd")
