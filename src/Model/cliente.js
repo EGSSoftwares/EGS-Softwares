@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
 
-const db = require('../persist/db'); //importando a persistencia
+const db = require('../Persistence/db'); //importando a persistencia
 
 const cliente = db.define('Cliente', (  //definindo cliente de acordo com os requisitoss
     {
