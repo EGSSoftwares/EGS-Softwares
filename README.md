@@ -19,3 +19,17 @@ Nosso sistema tem como objetivo gerenciar as tarefas realizadas em um estabeleci
 + CSS3
 + XAMPP Version 8.1.6 
 + Node.js v18.14.0
+
+## Regras de uso do Git
+
+### Regras de commit
+
+1_ As mensagens devem por padrão conter o tipo de alteração feita seguida por uma mensagem descrevendo a alteração
+  - Create: para criação de um arquivo seguido por uma mensgem informando o que foi criado
+  - Update: para alterações realizadas seguido por uma mensgem informando qual foi a alteração realizada
+  - Delete: para exclusões de arquivos, trechos de código seguido por uma mensgem informando o que foi removido
+  
+### Regras de issue
+
+- Devem ser definidas issues de acordo com as necessidades de desenvolvimento do projeto
+- Cada issue deve conter o responsável por ela e a data limite para que ela fique pronta
