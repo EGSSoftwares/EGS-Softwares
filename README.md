@@ -32,6 +32,9 @@ Nosso sistema tem como objetivo gerenciar as tarefas realizadas em um estabeleci
       - imagens
 
 
+## Protótipo
+- Protótipo do sistema: https://www.figma.com/proto/QYF5VmrMbQfeN9mpzbljMX/Prot%C3%B3tipo-Pet-Shop?node-id=2%3A3&scaling=contain&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1
+
 ## Regras de uso do Git
 
 ### Regras de commit
