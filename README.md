@@ -20,6 +20,18 @@ Nosso sistema tem como objetivo gerenciar as tarefas realizadas em um estabeleci
 + XAMPP Version 8.1.6 
 + Node.js v18.14.0
 
+## Estrutura do diretório
+
+- Padrões Adotados
+- Requisitos
+- src
+  - Controller
+  - Model
+  - Persistence
+  - View
+      - imagens
+
+
 ## Regras de uso do Git
 
 ### Regras de commit
