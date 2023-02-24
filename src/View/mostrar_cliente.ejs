@@ -45,9 +45,9 @@
                 <th class="tt"> Telefone </th>
                 <th colspan="3" class="tt"> Pets </th>
                 <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
+                    <td><%= cliente.nomePessoa %></td>
+                    <td><%= cliente.CPF %> </td>
+                    <td><%= cliente.Telefone %></td>
                     <td colspan="1"> </td>
                     <td colspan="2"> </td>
                 </tr>
@@ -60,7 +60,8 @@
             </table>
     
             <div id="botao">
-                <form action="deleteCliente" method="POST">
+                <form action="/deleteCliente" method="POST">
+                    <input type="hidden" value="<%=cliente.idPessoa%>" id= "pkpessoa"name="pkpessoa">
                     <input class="botao" type="submit" value="Confirmar">
                 </form>
                 <button class="botao" type="submit" formaction="controle_cliente.html" value="cancelar">Cancelar</button>
@@ -68,4 +69,3 @@
         </main>
     </body>
 </html>
-    
