@@ -1,9 +1,10 @@
+const cliente =  require("../../src/Model/cliente");
 
 function sendcss(req, res){
     res.sendFile('/src/view/style.css', {root: '..'});
 }
 function sendlogo (req, res){
-    res.sendFile('/src/view/logo.jpg', {root: '..'});
+    res.sendFile('/src/view/imagens/logo.jpg', {root: '..'});
 }
 
 function sendTelaSucesso (req, res)  {      //tela de sucesso
@@ -30,11 +31,12 @@ async function addCliente (req, res) {
     if (result != null) {
         try{
             cliente.addCliente(result);
+            res.redirect('/view/tela_sucesso.html'); 
         }catch(erro){
             console.log("entrou no catch add cliente app.js");
-            res.redirect('/src/view/tela_erro.html'); 
+            res.redirect('/view/tela_erro.html'); 
         }
-        res.redirect('/src/view/tela_sucesso.html'); 
+        
     }
 }
 

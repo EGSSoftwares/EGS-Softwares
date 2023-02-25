@@ -2,7 +2,7 @@ const express = require('express');
 const clientecrtl = require("../Controller/ClienteController");
 
 
-const router=express.Router()
+const router=express.Router();
 
 router.get('/style.css', clientecrtl.sendcss)
 router.get('/imagens/logo.jpg', clientecrtl.sendlogo)

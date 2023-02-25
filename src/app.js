@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const seq = require('sequelize');
 const path = require('path');
 const ejs = require('ejs');
-console.log("req bd")
+console.log("req bd");
 const db = require('../src/Persistence/db');
 const cliente = require('../src/Model/cliente'); 
 const res = require('express/lib/response');
@@ -65,6 +65,13 @@ app.post('/login', (req, res) => {
 
 app.get('/view/Gerenciamento.html', (req, res) => {         //tela principal
     res.sendFile('/src/view/Gerenciamento.html', { root: '..' });
+})
+
+app.get('/view/tela_sucesso.html', (req, res)=> {      //tela de sucesso
+    res.sendFile('/src/view/tela_sucesso.html', { root: '..' });
+})
+app.get('/view/tela_erro.html', (req, res)=> {      //tela de sucesso
+    res.sendFile('/src/view/tela_erro.html', { root: '..' });
 })
 
 app.use("/cliente", clienteRoute)
