@@ -1,6 +1,5 @@
 const { redirect } = require("express/lib/response");
 const cliente = require("../../src/Model/cliente");
-const wrap = require('express-async-wrap');
 
 function sendcss(req, res) {
     res.sendFile('/src/view/style.css', { root: '..' });
@@ -25,23 +24,6 @@ function sendTelaCadCliente(req, res) {   //cadastrando clientes
     res.sendFile('/src/view/cadastrar_clientes.html', { root: '..' });  //envia formulario
     console.log("entrou cadastrar_cliente");
 }
-/*
-async function addCliente(req, res, next) {
-    console.log("entrou add cliente");
-    const result = req.body;
-    console.log(result);
-    redirect = null;
-    if (result != null) {
-        try {
-            console.log("entrou no try de add cliente")
-            cliente.addCliente(result);
-            res.redirect('/view/tela_sucesso.html');
-        } catch (erro) {
-            console.log("entrou no catch add cliente app.js");
-            next(erro);
-        }
-    };
-}*/
 async function addCliente(req, res, next) {
     console.log("entrou add cliente");
     const result = req.body;
@@ -54,7 +36,7 @@ async function addCliente(req, res, next) {
         console.log(add);
         if(add==false){            
             console.log("entrou no add=false");
-            redirect = '/view/tela_erro.html';;
+            redirect = '/view/tela_erro.html';
         }else{
             redirect ='/view/tela_sucesso.html';
         }
@@ -72,16 +54,19 @@ var lastpkpessoa = -1;
 async function sendTelaExcluir2(req, res) {
 
     clientefordelete = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
-    lastpkpessoa = clientefordelete.idPessoa;
-    res.render('../../view/mostrar_cliente', { cliente: clientefordelete[0] });
+    if(clientefordelete!=null){
+        lastpkpessoa = clientefordelete.idPessoa;
+        res.render('../../view/mostrar_cliente', { cliente: clientefordelete[0] });
+    }else{
+        res.redirect("/view/tela_erro.html");
+    }
 }
 
 async function deleteCliente(req, res) {
-    try {
-        cliente.excluirCliente(req.body.pkpessoa);
+    if(await cliente.excluirCliente(req.body.pkpessoa)){
         lastpkpessoa = -1;
         res.redirect("/view/tela_sucesso.html");
-    } catch (error) {
+    }else{
         res.redirect("/view/tela_erro.html");
     }
 }
