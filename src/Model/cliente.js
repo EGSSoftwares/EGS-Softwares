@@ -50,9 +50,10 @@ const cliente = db.define('Cliente', (  //definindo cliente de acordo com os req
     }
 ));
 
-var addCliente = async function (result) {
+async function addCliente (result) {
     await db.sync();
     console.log("Entrou no add cliente de cliente.js");
+    var retorno=false;
     await cliente.create({
         nomePessoa: result.nomePessoa,  //cria novo cliente com informacoes do fomulario
         CPF: result.CPF,
@@ -63,34 +64,44 @@ var addCliente = async function (result) {
         Cidade: result.cid,
         tipoFuncionario: 0,
         tipoCliente: 1
-    }).catch( function (erro){ 
-                console.log("Entrou no catch addcliente cliente.js");
-                throw new Error("teste")});
+    }).then(retorno = true ).catch( function (erro){ 
+            console.log("Entrou no catch addcliente cliente.js");
+            retorno =  false;
+            console.log(retorno);
+            return retorno;
+    });
+    console.log("retorno no final é " +retorno);
+    return retorno;
 }
-var excluirCliente = async function (idPessoa) {
+ async function excluirCliente(idPessoa) {
+    var retorno = false;
     await db.sync();
     try {
         await cliente.destroy({
             where: { idPessoa: idPessoa }
         });
+        retorno = true;
     } catch (erro) {
         throw new Error("erro");
     }
+    return retorno;
 };
-var attCliente = async function (lastpkpessoa, req) {
-    await db.sync;
-    const procura = await cliente.findByPk(lastpkpessoa);
-    procura.nomePessoa = req.body.nomePessoa;
-    procura.CPF = req.body.CPF;
-    procura.Cidade = req.body.cid;
-    procura.Telefone = req.body.tel;
-    procura.Bairro = req.body.bairro;
-    procura.Logradouro = req.body.rua;
-    procura.Numero = req.body.num;
-    try {
+async function attCliente(lastpkpessoa, req) {
+    retorno = false;
+    try{
+        await db.sync;
+        const procura = await cliente.findByPk(lastpkpessoa);
+        procura.nomePessoa = req.body.nomePessoa;
+        procura.CPF = req.body.CPF;
+        procura.Cidade = req.body.cid;
+        procura.Telefone = req.body.tel;
+        procura.Bairro = req.body.bairro;
+        procura.Logradouro = req.body.rua;
+        procura.Numero = req.body.num;
         await procura.save();
-    } catch (erro) {
-        throw new Error("erro");
+        retorno = true;
+    }catch(erro){
     }
+    return retorno;
 };
 module.exports = { cliente, addCliente, excluirCliente, attCliente };
