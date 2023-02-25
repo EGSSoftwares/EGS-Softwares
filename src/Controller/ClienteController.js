@@ -1,6 +1,7 @@
 
 const { redirect } = require("express/lib/response");
 const cliente = require("../../src/Model/cliente");
+const db = require('../../src/Persistence/db');
 
 function sendcss(req, res) {
     res.sendFile('/src/view/style.css', { root: '..' });
@@ -78,16 +79,15 @@ function sendTelaBuscarCliente(req, res) {
 
 async function mostrarClientes(req, res) {
     var procura = null;
-    try {
-        await db.sync;
-        console.log("Entrou no exibirCliente");
-        procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa } }); //faz select
-    } catch (err) {
-        res.redirect('/view/tela_erro.html');
-    }
+    await db.sync;
+    console.log("Entrou no exibirCliente");
+    console.log(req.body);
+    procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa } }); //faz select
     console.log(procura);
     if (procura != null) {
         res.render("informacoes_cliente", { pessoas: procura }); //exibe clientes com o nome
+    }else{
+        res.redirect('/view/tela_erro.html');
     }
 }
 
