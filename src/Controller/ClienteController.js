@@ -1,3 +1,4 @@
+
 const { redirect } = require("express/lib/response");
 const cliente = require("../../src/Model/cliente");
 
@@ -56,7 +57,7 @@ async function sendTelaExcluir2(req, res) {
     clientefordelete = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
     if(clientefordelete!=null){
         lastpkpessoa = clientefordelete.idPessoa;
-        res.render('../../view/mostrar_cliente', { cliente: clientefordelete[0] });
+        res.render('mostrar_cliente', { cliente: clientefordelete[0] });
     }else{
         res.redirect("/view/tela_erro.html");
     }
@@ -86,7 +87,7 @@ async function mostrarClientes(req, res) {
     }
     console.log(procura);
     if (procura != null) {
-        res.render("../../view/informacoes_cliente", { pessoas: procura }); //exibe clientes com o nome
+        res.render("informacoes_cliente", { pessoas: procura }); //exibe clientes com o nome
     }
 }
 
@@ -108,7 +109,7 @@ async function formattCliente(req, res) {
             cid: procura[0].Cidade
         }
         lastpkpessoa = procura[0].idPessoa;
-        res.render("../../view/atualizar_cliente", { pessoa: pessoa });//gera formulario preenchido
+        res.render("atualizar_cliente", { pessoa: pessoa });//gera formulario preenchido
     }else{
         res.redirect('/view/tela_erro.html');
     }

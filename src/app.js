@@ -13,7 +13,7 @@ var user = null;
 
 // criar serviço
 const app = express();      //instancia srver
-app.set("views", path.join(__dirname, 'views'));    //para usarr o ejs
+app.set("views", path.join(__dirname, 'view'));    //para usarr o ejs
 app.set('view engine', 'ejs');
 
 //configurando morgan
