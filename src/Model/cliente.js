@@ -40,11 +40,15 @@ const cliente = db.define('Cliente', (  //definindo cliente de acordo com os req
             allowNull: false
         },
         tipoFuncionario: {
-            type: sequelize.TINYINT,
+            type: sequelize.BOOLEAN,
             allowNull: false
         },
         tipoCliente: {
-            type: sequelize.TINYINT,
+            type: sequelize.BOOLEAN,
+            allowNull: false
+        },
+        Existente: {
+            type: sequelize.BOOLEAN,
             allowNull: false
         }
     }
@@ -62,8 +66,9 @@ async function addCliente (result) {
         Numero: result.num,
         Logradouro: result.rua,
         Cidade: result.cid,
-        tipoFuncionario: 0,
-        tipoCliente: 1
+        tipoFuncionario: false,
+        tipoCliente: true,
+        Existente: true
     }).then(retorno = true ).catch( function (erro){ 
             console.log("Entrou no catch addcliente cliente.js");
             retorno =  false;
@@ -77,9 +82,9 @@ async function addCliente (result) {
     var retorno = false;
     await db.sync();
     try {
-        await cliente.destroy({
-            where: { idPessoa: idPessoa }
-        });
+        let procura = await cliente.findByPk(idPessoa);
+        procura.Existente= false;
+        procura.save();
         retorno = true;
     } catch (erro) {
         throw new Error("erro");
