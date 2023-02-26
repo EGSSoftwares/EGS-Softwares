@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Alterar Serviço</title>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <a href="gerenciamento.html"> 
+                    INICIO
+                </a>
+            </nav>
+            <div class="conteiner">  
+                <img src="imagens/logo.jpg" alt="logo Banho e Tosa">
+                <h1>Alterar serviço</h1>
+            </div>
+        </header>
+
+        <main >
+            <form action="/attServico" method="POST">
+                <div class="teste">
+                    <label for="fname">Tipo de serviço:</label> <br>
+                    <input type="text" id="tipoServico" name="tipoServico" ><br> <br>
+                    <label for="lname">Data do serviço:</label> <br>
+                    <input type="date" id="dataServico" name="dataServico" ><br><br>
+                    <label for="fname">Hora do serviço:</label> <br>
+                    <input type="time" id="horaServico" name="horaServico" ><br> <br>
+                    <label for="lname">Valor cobrado:</label> <br>
+                    <input type="text" id="valor" name="valor" ><br><br>
+                </div>
+
+                <div class="teste">
+                    <label for="fname">Nome do cliente:</label> <br>
+                    <input type="text" id="nomeCliente" name="nomeCliente" ><br> <br>
+                    <label for="lname">Nome do pet:</label> <br>
+                    <input type="text" id="nomePet" name="nomePet" ><br><br>
+                    <label for="fname">Nome do funcionario:</label> <br>
+                    <input type="text" id="nomeFunc" name="nomeFunc" ><br> <br>
+                </div>
+
+                <div id="botao">
+                    <input class="botao" type="submit" value="  Alterar  ">
+                    <button class="botao" type="submit" formaction="controle_servico.html">Cancelar</button>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>
