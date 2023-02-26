@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            
+            table, td, th {
+                border:solid 2px black;
+                padding:20px 50px;
+                margin: 80px auto;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            
+            th {
+                background-color:#F2784B;    
+            } 
+
+            .tt{
+                font-weight: bolder;
+            } 
+            
+        </style>
+        <title>Excluir Pet</title>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <a href="gerenciamento.html"> 
+                    INICIO
+                </a>
+            </nav>
+            <div class="conteiner">  
+            <img src="imagens/logo.jpg" alt="logo Banho e Tosa">
+            <h1>Excluir Pet</h1>
+            </div>
+        </header>
+
+        <main>    
+            <% for(let i=0; i< pets.length; i++){%>
+                <table>
+                    <tr>
+                        <th> Nome </th>
+                        <th> Raca </th>
+                        <th> Peso </th>
+                        <th> Especie </th>
+                        <th> Nome do dono </th>
+                        <th> CPF do dono </th>
+                        <th> Contato </th>
+                    <tr>
+                        <td><%= pets[i].nomePet %></td>
+                        <td><%= pets[i].racaPet %></td>
+                        <td><%= pets[i].pesoPet% ></td>
+                        <td><%= pets[i].especiePet% ></td>
+                        <td><%= pessoas[i].nomePessoa %></td>
+                        <td><%= pessoas[i].CPF %></td>
+                        <td><%= pessoas[i].Numero %></td>
+                    </tr>
+                </table>
+            <% }%>
+            <div id="botao">
+                <input class="botao" type="submit" value="Confirmar">
+                <button class="botao" type="submit" formaction="controle_cliente.html" value="cancelar">Cancelar</button>
+            </div>
+        </main>
+    </body>
+</html>
