@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Visualizar Serviço</title>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <a href="gerenciamento.html"> 
+                    INICIO
+                </a>
+            </nav>
+            <div class="conteiner">  
+                <img src="imagens/logo.jpg" alt="logo Banho e Tosa">
+                <h1>Visualizar Serviço</h1>
+            </div>
+        </header>
+
+        <main >
+            <p class="texto_explicativo">Digite a data do serviço que <br> voce deseja visualizar</p>
+            <form action="atualizar_servico.ejs" method="POST">
+                <div class="excluir">
+                    <label for="data" >Data :</label> <br>
+                    <input type="date" id="data" name="data" ><br> <br>
+                </div>
+                <div class="botaoe">
+                    <button class="botao" type="submit" >Buscar</button>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>
