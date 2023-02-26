@@ -1,5 +1,5 @@
 const sequelize = require('sequelize');
-const cliente = require('../src/Model/cliente'); 
+const cliente = require('../../src/Model/cliente'); 
 
 const db = require('../Persistence/db'); //importando a persistencia
 
@@ -10,14 +10,6 @@ const pet = db.define('Pet', {
         allowNull: false,
         primaryKey: true
     }, 
-    idPessoa: {
-        type: sequelize.INTEGER,
-        references: {
-            model: clientes,
-            key: idPessoa
-        },
-        allowNull:false
-    },
     nomePet: {
         type: sequelize.STRING,
         allowNull: false
@@ -39,21 +31,23 @@ const pet = db.define('Pet', {
         allowNull:false
     }
 })
-pet.belongsTo(cliente);
-cliente.hasMany(pet);
+pet.belongsTo(cliente.cliente, {
+    foreignKey: "CPF", 
+    targetKey: "CPF"
+});
 
 async function addPet (result) {
     await db.sync();
     console.log("Entrou no add cliente de cliente.js");
     var retorno=false;
-    const pessoa = cliente.cliente.findAll( { where: { CPF: result.CPF }})[0];
+    //const pessoa = cliente.cliente.findAll( { where: { CPF: result.CPF }})[0];
     await pet.create({
         nomePet: result.nomePet,  //cria novo cliente com informacoes do fomulario
         Especie: result.especie,
         Peso: result.peso,
         Raca: result.raca,
         Existente: true,
-        idPessoa: pessoa.idPessoa
+        CPF: result.CPF,
     }).then(retorno = true )
     .catch( function (erro){ 
             console.log("Entrou no catch addpet pet.js");
@@ -92,3 +86,5 @@ async function attPet(pkpet, req) {
     }
     return retorno;
 };
+
+module.exports={ attPet, excluirPet, addPet, pet};
