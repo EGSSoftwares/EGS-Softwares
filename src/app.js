@@ -26,13 +26,13 @@ app.use(bp.json());
 
 //enviando arquivos
 app.get('/styleLogin.css', (req, res) => {
-    res.sendFile('/src/view/styleLogin.css', { root: '..' });
+    res.sendFile('/src/View/CSS/styleLogin.css', { root: '..' });
 })
 app.get('/style.css', (req, res) => {
-    res.sendFile('/src/view/style.css', { root: '..' });
+    res.sendFile('/src/View/CSS/style.css', { root: '..' });
 })
-app.get('/view/style.css', (req, res) => {
-    res.sendFile('/src/view/style.css', { root: '..' });
+app.get(' /src/View/CSS/style.css', (req, res) => {
+    res.sendFile('/src/View/CSS/style.css', { root: '..' });
 })
 
 app.get('/imagens/logo.jpg', (req, res) => {
@@ -55,17 +55,17 @@ app.post('/login', (req, res) => {
     console.log(result);
     if (result.login == 'admin' && result.senha == 'admin') {   //user aadmin admin
         user = 'admin';
-        res.redirect('/view/Gerenciamento.html');
+        res.redirect('/view/gerenciamento.html');
     }else if(result.login == 'func' && result.senha=='func'){
         user = 'func';
-        res.redirect('/view/Gerenciamento.html');
+        res.redirect('/view/gerenciamento.html');
     }
     else {
         res.send("Usuario nao cadastrado");
     }
 })
 
-app.get('/view/Gerenciamento.html', (req, res) => {         //tela principal
+app.get('/view/gerenciamento.html', (req, res) => {         //tela principal
     res.sendFile('/src/view/Gerenciamento.html', { root: '..' });
 })
 
