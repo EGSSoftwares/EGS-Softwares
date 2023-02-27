@@ -30,7 +30,7 @@ const pet = db.define('Pet', {
         type: sequelize.BOOLEAN,
         allowNull:false
     }
-})
+});
 pet.belongsTo(cliente.cliente, {
     foreignKey: "CPF", 
     targetKey: "CPF"
@@ -67,7 +67,6 @@ async function addPet (result) {
         await procura.save();
         retorno = true;
     } catch (erro) {
-        throw new Error("erro");
     }
     return retorno;
 };

@@ -19,14 +19,14 @@ function sendTelacrtlPet(req, res){
 }
 
 function sendTelaPet(req, res){
-    res.sendFile('/src/view/Pet/cadastrarPet.html', {root: '..'});
+    res.sendFile('/src/view/Pet/cadastrar_pet.html', {root: '..'});
 }
 
-function addPet(req, res){
+async function addPet(req, res){
     console.log("entrou no add pet, petcrtl.js");
     let redirect ='/view/tela_erro.html';
-    const dono = cliente.cliente.findAll( {where : { CPF: req.body.CPF, Existente: true}});
-    if(dono!=null && pet.addPet(req.body)){
+    const dono = await cliente.cliente.findAll( {where : { CPF: req.body.CPF, Existente: true}});
+    if(dono!=null && await pet.addPet(req.body)){
         redirect ='/view/tela_sucesso.html';
     }
     res.redirect(redirect);
@@ -36,10 +36,10 @@ function sendTelaExcluir(req, res){
     res.sendFile('/src/view/Pet/excluir_pet.html', {root: '..'});
 }
 var idpet = -1;
-function sendTelaExcluir2(req, res){
-    const dono = cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
+async function sendTelaExcluir2(req, res){
+    const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
     if(dono!=null){
-        const bicho = pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente: true}});
+        const bicho = await pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente: true}});
         if(bicho!=null){
             idpet = bicho[0].idPet;
             res.render("/pet/excluir_pet22", { pets: bicho, pessoa: dono});
@@ -50,10 +50,10 @@ function sendTelaExcluir2(req, res){
         res.redirect("/view/tela_erro.html");
     }
 }
-function deletePet(req, res){
+async function deletePet(req, res){
     let redirect ='/view/tela_erro.html';
     if(idPet>0){
-        if( pet.excluirPet(idpet)){
+        if( await pet.excluirPet(idpet)){
             idpet=-1;
             redirect = '/view/tela_sucesso.html';
         }
@@ -64,10 +64,10 @@ function sendTelaBuscarPet(req, res){
     res.sendFile('/src/view/Pet/visualizar_pet.html', {root: '..'});
 }
 
-function exibirPet(req, res){
-    const dono = cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
+async function exibirPet(req, res){
+    const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
     if(dono!=null){
-        const bicho = pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente:true}});
+        const bicho = await pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente:true}});
         if(bicho!=null){
             res.render("/pet/informacoes2_pet", { pets: bicho, pessoa: dono});
         }else{
@@ -81,10 +81,10 @@ function exibirPet(req, res){
 function solicitarCpfENome(req, res){
     res.sendFile('/src/view/Pet/atualizar_pet_pagina_busca.html', {root: '..'});
 }
-function formattPet(req, res){
-    const dono = cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
+async function formattPet(req, res){
+    const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
     if(dono!=null){
-        const bicho = pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente: true}});
+        const bicho = await pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente: true}});
         if(bicho!=null){
             idpet = bicho[0].idPet;
             res.render("/pet/atualizar_pet", { pet: bicho[0] });
@@ -95,9 +95,9 @@ function formattPet(req, res){
         res.redirect("/view/tela_erro.html");
     }
 }
-function attPet (req, res){
+async function attPet (req, res){
     let redirect ='/view/tela_erro.html';
-    if(idpet >0 && pet.attPet(idpet, req) ){
+    if(idpet >0 && await pet.attPet(idpet, req) ){
         redirect = '/view/tela_sucesso.html'
     }
     res.redirect(redirect);
