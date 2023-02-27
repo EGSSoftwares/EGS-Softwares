@@ -24,14 +24,14 @@ app.use(bp.json());
 
 
 //enviando arquivos
-app.get('/styleLogin.css', (req, res) => {
-    res.sendFile('/view/styleLogin.css', { root: '..' });
+app.get('/css/styleLogin.css', (req, res) => {
+    res.sendFile('/view/css/styleLogin.css', { root: '..' });
 })
-app.get('/style.css', (req, res) => {
-    res.sendFile('/view/style.css', { root: '..' });
+app.get('/css/style.css', (req, res) => {
+    res.sendFile('/view/css/style.css', { root: '..' });
 })
-app.get('/view/style.css', (req, res) => {
-    res.sendFile('/view/style.css', { root: '..' });
+app.get('/view/css/style.css', (req, res) => {
+    res.sendFile('/view/css/style.css', { root: '..' });
 })
 
 app.get('/imagens/logo.jpg', (req, res) => {
@@ -70,20 +70,20 @@ app.get('/view/tela_sucesso.html', (req, res) => {      //tela de sucesso
 app.get("/view/tela_erro.html", (req, res) => {        //tela de erro
     res.sendFile('/view/tela_erro.html', { root: '..' });
 })
-app.get('/view/controle_cliente.html', (req, res) => {     //tela do crud de cliente
-    res.sendFile('/view/controle_cliente.html', { root: '..' });
+app.get('/view/cliente/controle_cliente.html', (req, res) => {     //tela do crud de cliente
+    res.sendFile('/view/cliente/controle_cliente.html', { root: '..' });
     console.log("entrou controle");
 })
-app.post('/view/controle_cliente.html', (req, res) => {     //tela do crud de cliente
-    res.sendFile('/view/controle_cliente.html', { root: '..' });
+app.post('/view/cliente/controle_cliente.html', (req, res) => {     //tela do crud de cliente
+    res.sendFile('/view/cliente/controle_cliente.html', { root: '..' });
     console.log("entrou post controle");
 })
-app.get('/view/cadastrar_clientes.html', (req, res) => {   //cadastrando clientes
-    res.sendFile('/view/cadastrar_clientes.html', { root: '..' });  //envia formulario
+app.get('/view/cliente/cadastrar_clientes.html', (req, res) => {   //cadastrando clientes
+    res.sendFile('/view/cliente/cadastrar_clientes.html', { root: '..' });  //envia formulario
     console.log("entrou cadastrar_cliente");
 })
 
-app.post('/view/addCliente', async (req, res) => {
+app.post('/view/cliente/addCliente', async (req, res) => {
     console.log("entrou add cliente");
     const result = req.body;
     console.log(result);
@@ -120,12 +120,12 @@ app.post('/view/addCliente', async (req, res) => {
     }
 })
 
-app.get('/view/excluir_cliente.html', (req, res) => {
-    res.sendFile('/view/excluir_cliente.html', { root: '..' });
+app.get('/view/cliente/excluir_cliente.html', (req, res) => {
+    res.sendFile('/view/cliente/excluir_cliente.html', { root: '..' });
     console.log("entrou no excluir cliente");
 })
 var lastpkpessoa = -1;
-app.post('/view/excluirClientePorCpf', async (req, res) => {
+app.post('/view/cliente/excluirClientePorCpf', async (req, res) => {
     /*await db.sync();
     await cliente.destroy({
         where: { CPF: req.body.CPF }     //exclui cliente de cpf = ao cpf do formulario
@@ -138,7 +138,7 @@ app.post('/view/excluirClientePorCpf', async (req, res) => {
     lastpkpessoa= clientefordelete.idPessoa;
     console.log(clientefordelete);
     console.log(clientefordelete[0]);
-    res.render('../../view/mostrar_cliente', {cliente: clientefordelete[0] });
+    res.render('../../view/cliente/mostrar_cliente', {cliente: clientefordelete[0] });
 })
 app.post('/deleteCliente', (req, res) =>{
     try {
@@ -150,10 +150,10 @@ app.post('/deleteCliente', (req, res) =>{
     }
 })  
 
-app.get('/view/pagina_buscar_cliente.html', (req, res) => {
-    res.sendFile('/view/pagina_buscar_cliente.html', { root: '..' });  //pega nome de cliente no form
+app.get('/view/cliente/pagina_buscar_cliente.html', (req, res) => {
+    res.sendFile('/view/cliente/pagina_buscar_cliente.html', { root: '..' });  //pega nome de cliente no form
 })
-app.post('/view/exibirCliente', async (req, res) => {
+app.post('/view/cliente/exibirCliente', async (req, res) => {
     var procura = null;
     try {
         await db.sync;
@@ -164,16 +164,16 @@ app.post('/view/exibirCliente', async (req, res) => {
     }
     console.log(procura);
     if (procura != null) {
-        res.render("../../view/informacoes_cliente", { pessoas: procura }); //exibe clientes com o nome
+        res.render("../../view/cliente/informacoes_cliente", { pessoas: procura }); //exibe clientes com o nome
     }
 })
 
 
-app.get('/view/solicitar_cpf.html', (req, res) => {
-    res.sendFile('/view/solicitar_cpf.html', { root: '..' })  //solicita cpf
+app.get('/view/cliente/solicitar_cpf.html', (req, res) => {
+    res.sendFile('/view/cliente/solicitar_cpf.html', { root: '..' })  //solicita cpf
 })
 
-app.post('/view/atualizar_cliente.ejs', async (req, res) => {
+app.post('/view/cliente/atualizar_cliente.ejs', async (req, res) => {
     const procura = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
     console.log(procura);
     const pessoa = {
@@ -186,7 +186,7 @@ app.post('/view/atualizar_cliente.ejs', async (req, res) => {
         cid: procura[0].Cidade
     }
     lastpkpessoa = procura[0].idPessoa;
-    res.render("../../view/atualizar_cliente", { pessoa: pessoa });//gera formulario preenchido
+    res.render("../../view/cliente/atualizar_cliente", { pessoa: pessoa });//gera formulario preenchido
 })
 app.post('/attCliente', async (req, res) => {
     /*await db.sync;
