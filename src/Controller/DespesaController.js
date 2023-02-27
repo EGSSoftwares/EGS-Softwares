@@ -9,8 +9,16 @@ const { Sequelize } = require("sequelize");
 function sendcss(req, res) {
     res.sendFile('/src/view/css/style.css', { root: '..' });
 }
+
 function sendlogo(req, res) {
     res.sendFile('/src/view/imagens/logo.jpg', { root: '..' });
+}
+
+function sendTelaDataDespesa(res){
+
+    res.sendFile('src/view/data_despesa.html', { root: '..' })
+    console.log("Despesa OK")
+
 }
 
 async function exibirDespesa(req, res) {
