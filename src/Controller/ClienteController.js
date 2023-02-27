@@ -4,26 +4,26 @@ const cliente = require("../../src/Model/cliente");
 const db = require('../../src/Persistence/db');
 
 function sendcss(req, res) {
-    res.sendFile('/src/view/style.css', { root: '..' });
+    res.sendFile('/src/view/css/style.css', { root: '..' });
 }
 function sendlogo(req, res) {
     res.sendFile('/src/view/imagens/logo.jpg', { root: '..' });
 }
 
 function sendTelaSucesso(req, res) {      //tela de sucesso
-    res.sendFile('/src/view/tela_sucesso.html', { root: '..' });
+    res.sendFile('/src/view/cliente/tela_sucesso.html', { root: '..' });
 }
 function sendTelaErro(req, res) {        //tela de erro
-    res.sendFile('/src/view/tela_erro.html', { root: '..' });
+    res.sendFile('/src/view/cliente/tela_erro.html', { root: '..' });
 }
 
 function sendTelaCrtlCliente(req, res) {     //tela do crud de cliente
-    res.sendFile('/src/view/controle_cliente.html', { root: '..' });
+    res.sendFile('/src/view/cliente/controle_cliente.html', { root: '..' });
     console.log("entrou controle");
 }
 
 function sendTelaCadCliente(req, res) {   //cadastrando clientes
-    res.sendFile('/src/view/cadastrar_clientes.html', { root: '..' });  //envia formulario
+    res.sendFile('/src/view/cliente/cadastrar_clientes.html', { root: '..' });  //envia formulario
     console.log("entrou cadastrar_cliente");
 }
 async function addCliente(req, res, next) {
@@ -48,7 +48,7 @@ async function addCliente(req, res, next) {
 }
 
 function sendTelaExcluir(req, res) {
-    res.sendFile('/src/view/excluir_cliente.html', { root: '..' });
+    res.sendFile('/src/view/cliente/excluir_cliente.html', { root: '..' });
     console.log("entrou no excluir cliente");
 }
 
@@ -74,7 +74,7 @@ async function deleteCliente(req, res) {
 }
 
 function sendTelaBuscarCliente(req, res) {
-    res.sendFile('/src/view/pagina_buscar_cliente.html', { root: '..' });  //pega nome de cliente no form
+    res.sendFile('/src/view/cliente/pagina_buscar_cliente.html', { root: '..' });  //pega nome de cliente no form
 }
 
 async function mostrarClientes(req, res) {
@@ -92,7 +92,7 @@ async function mostrarClientes(req, res) {
 }
 
 function solicitarCpf(req, res) {
-    res.sendFile('/src/view/solicitar_cpf.html', { root: '..' })  //solicita cpf
+    res.sendFile('/src/view/cliente/solicitar_cpf.html', { root: '..' })  //solicita cpf
 }
 
 async function formattCliente(req, res) {
