@@ -10,4 +10,4 @@ router.get('/imagens/logo.jpg', despCtrl.sendlogo)
 
 router.get("/data_despesa.html", despCtrl.sendTelaDataDespesa)
 
-router.get("/exibirDespesa", despCtrl.exibirDespesa)
+router.post("/exibirDespesa", despCtrl.exibirDespesa)
