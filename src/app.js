@@ -32,7 +32,7 @@ app.get('/styleLogin.css', (req, res) => {
 app.get('/style.css', (req, res) => {
     res.sendFile('/src/View/CSS/style.css', { root: '..' });
 })
-app.get(' /src/View/CSS/style.css', (req, res) => {
+app.get('/src/View/CSS/style.css', (req, res) => {
     res.sendFile('/src/View/CSS/style.css', { root: '..' });
 })
 
