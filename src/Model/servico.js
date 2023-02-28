@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
 const cliente = require('../../src/Model/cliente'); 
-const pet = require('../../src/Model/cliente'); 
+const pet = require('../../src/Model/pet'); 
 const db = require('../Persistence/db'); //importando a persistencia
 const servico = db.define('Servico', {
     idServico: { 
@@ -9,6 +9,10 @@ const servico = db.define('Servico', {
         allowNull: false,
         primaryKey: true
     }, 
+    tipoServico:{
+        type: sequelize.STRING,
+        allowNull: true
+    },
     data: {
         type: sequelize.DATEONLY,
         allowNull: false,
@@ -37,15 +41,19 @@ servico.belongsTo(pet.pet, {
 
 async function addServico( result){     //cria servico
     retorno = false;
+    console.log("entrou no add servico do servico.js");
+    console.log(result);
     try{
         await db.sync();
         servico.create({
             //data: result.ano+'-'+result.mes+'-'+result.dia+'-'+' '+result.hora+':'+result.min+":00",
-            data: result.dataServico,
-            hora: result.horaServico,
+            data: result.data,
+            hora: result.hora,
             CPF: result.CPF,
-            idPet: await pet.findAll({where: { CPF: result.CPF, nomePet: result.nomePet, Existente: true}})[0].idPet,
-            valorCobrado: result.valorCobrado,
+            //idPet: await pet.findAll({where: { CPF: result.CPF, nomePet: result.nomePet, Existente: true}})[0].idPet,
+            idPet: result.idPet,
+            valorCobrado: result.valor,
+            tipoServico: result.tipoServicos
         })
         retorno= true;
     }catch(erro){
