@@ -58,7 +58,7 @@ async function sendTelaExcluir2(req, res) {
     clientefordelete = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
     if(clientefordelete!=null){
         lastpkpessoa = clientefordelete.idPessoa;
-        res.render('mostrar_cliente', { cliente: clientefordelete[0] });
+        res.render('../view/cliente/mostrar_cliente.ejs', { cliente: clientefordelete[0] });
     }else{
         res.redirect("/view/tela_erro.html");
     }
@@ -85,7 +85,7 @@ async function mostrarClientes(req, res) {
     procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa } }); //faz select
     console.log(procura);
     if (procura != null) {
-        res.render("informacoes_cliente", { pessoas: procura }); //exibe clientes com o nome
+        res.render("../view/cliente/informacoes_cliente.ejs", { pessoas: procura }); //exibe clientes com o nome
     }else{
         res.redirect('/view/tela_erro.html');
     }
@@ -109,7 +109,7 @@ async function formattCliente(req, res) {
             cid: procura[0].Cidade
         }
         lastpkpessoa = procura[0].idPessoa;
-        res.render("atualizar_cliente", { pessoa: pessoa });//gera formulario preenchido
+        res.render("../view/cliente/atualizar_cliente", { pessoa: pessoa });//gera formulario preenchido
     }else{
         res.redirect('/view/tela_erro.html');
     }
@@ -124,8 +124,6 @@ async function attCliente(req, res) {
     res.redirect(redirect);
 }
 
-module.exports = {
-    attCliente, formattCliente, solicitarCpf, mostrarClientes, sendTelaBuscarCliente, deleteCliente,
+module.exports = { attCliente, formattCliente, solicitarCpf, mostrarClientes, sendTelaBuscarCliente, deleteCliente,
     sendTelaExcluir2, addCliente, sendTelaExcluir, sendTelaCadCliente, sendTelaCrtlCliente, sendTelaErro,
-    sendTelaSucesso, sendcss, sendlogo
-}
+    sendTelaSucesso, sendcss, sendlogo }

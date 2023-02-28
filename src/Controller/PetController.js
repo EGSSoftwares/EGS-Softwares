@@ -67,11 +67,11 @@ function sendTelaBuscarPet(req, res){
 }
 
 async function exibirPet(req, res){
-    const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
+    const dono = await cliente.cliente.findOne( { where : { CPF: req.body.CPF }});
     if(dono!=null){
         const bicho = await pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente:true}});
         if(bicho!=null){
-            res.render("/src/view/pet/informacoes2_pet", { pets: bicho, pessoa: dono});
+            res.render("../view/pet/informacoes_pet2.ejs", { pets: bicho, pessoa: dono});
         }else{
             res.redirect("/src/view/tela_erro.html");
         }
@@ -80,16 +80,20 @@ async function exibirPet(req, res){
     }
 }
 
-function solicitarCpfENome(req, res){
+function  solicitarCpfENome(req, res){
     res.sendFile('/src/view/Pet/atualizar_pet_pagina_busca.html', {root: '..'});
 }
 async function formattPet(req, res){
-    const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
+    console.log(req.body.CPF)
+    const CPF= req.body.CPF
+    const dono = await cliente.cliente.findOne( { where : { CPF: CPF }});
     if(dono!=null){
         const bicho = await pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente: true}});
+        console.log(bicho)
         if(bicho!=null){
+            console.log("entrou bicho")
             idpet = bicho[0].idPet;
-            res.render("/pet/atualizar_pet", { pet: bicho[0] });
+            res.render("../view/pet/atualizar_pet.ejs", { pet: bicho[0] });
         }else{
             res.redirect("/view/tela_erro.html");
         }
@@ -98,8 +102,9 @@ async function formattPet(req, res){
     }
 }
 async function attPet (req, res){
+    console.log("entrou no att pet, petcrtl.js");
     let redirect ='/view/tela_erro.html';
-    if(idpet >0 && await pet.attPet(idpet, req) ){
+    if(idpet > 0 && await pet.attPet(idpet, req) ){
         redirect = '/view/tela_sucesso.html'
     }
     res.redirect(redirect);

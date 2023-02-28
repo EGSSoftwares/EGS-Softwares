@@ -11,6 +11,9 @@ function telaControle(req, res){
 function sendCadastro(req, res){
     res.sendFile('/src/view/Serviço/cadastra_servico.html', {root: '..'})
 }
+function sendGerenciamento(req, res){
+    res.sendFile('/src/view/gerenciamento.html', {root: '..'})
+}
 async function addServico(req, res){
     const dono = await cliente.cliente.findAll({where: { CPF: req.body.CPF, Existente: true}});
     if(dono!=undefined){
@@ -52,12 +55,15 @@ function sendVisualizar(req, res){
     res.sendFile('/src/view/Serviço/visualizar_servico1.html', {root: '..'});
 }
 async function sendVisualizarejs(req, res){
-    const serv = await servico.servico.findAll( { where: { data: req.data, hora: req.hora}});
+    data=req.body.data
+    console.log(data)
+    const serv = await servico.servico.findOne( { where: { data: req.body.data}});
+    console.log(data)
     if (serv!= undefined){
         const bicho = await pet.pet.findByPk(serv.idPet);
         var dono = await cliente.cliente.findAll({where: { CPF: serv.CPF}});
         dono= dono[0];
-        res.render("/Serviço/visualizar_serviço2.ejs", 
+        res.render("../view/serviço/visualizar_servico2.ejs", 
         { servico: {
             tipo: serv.tipoServico,
             hora: serv.hora,
@@ -76,6 +82,6 @@ async function sendAlterarejs(req, res){
     
 }
 module.exports={telaControle, sendCadastro, addServico, sendExcluir, sendExcluirejs, sendVisualizar, sendVisualizarejs,
-                sendAlterar
+                sendAlterar, sendGerenciamento
                 }
 

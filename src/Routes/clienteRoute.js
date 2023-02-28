@@ -34,6 +34,6 @@ router.get('/solicitar_cpf.html', clientecrtl.solicitarCpf)
 
 router.post('/atualizar_cliente.ejs', clientecrtl.formattCliente)
 
-router.post('/attCliente', clientecrtl.attCliente )
+router.post('/attcliente', clientecrtl.attCliente )
 
 module.exports = router;
