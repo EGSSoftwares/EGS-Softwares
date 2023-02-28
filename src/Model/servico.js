@@ -10,8 +10,12 @@ const servico = db.define('Servico', {
         primaryKey: true
     }, 
     data: {
-        type: sequelize.DATE,
+        type: sequelize.DATEONLY,
         allowNull: false,
+    },
+    hora: {
+        type: sequelize.TIME,
+        allowNull: false
     },
     valorCobrado: {
         type: sequelize.DOUBLE,
@@ -36,11 +40,12 @@ async function addServico( result){     //cria servico
     try{
         await db.sync();
         servico.create({
-            data: result.ano+'-'+result.mes+'-'+result.dia+'-'+' '+result.hora+':'+result.min+":00",
+            //data: result.ano+'-'+result.mes+'-'+result.dia+'-'+' '+result.hora+':'+result.min+":00",
+            data: result.dataServico,
+            hora: result.horaServico,
             CPF: result.CPF,
-            idPet: await pet.findAll({where: { CPF: result.CPF, nomePet: result.nome, Existente: true}})[0].idPet,
+            idPet: await pet.findAll({where: { CPF: result.CPF, nomePet: result.nomePet, Existente: true}})[0].idPet,
             valorCobrado: result.valorCobrado,
-            despeza: result.despeza
         })
         retorno= true;
     }catch(erro){
@@ -52,7 +57,7 @@ async function deleteServico(result){   //deleta servico numa data
     retorno = false;
     try{
         await db.sync();
-        await servico.destroy( { where: { data: result.ano+'-'+result.mes+'-'+result.dia+'-'+' '+result.hora+':'+result.min+":00"}});
+        await servico.destroy( { where: { data: result.data, hora: result.hora}});
         retorno = true;
     }catch(err){
 
@@ -63,8 +68,9 @@ async function attServico (result){ //atualiza servico pra outra data
     retorno = false;
     try{
         await db.sync();
-        let serv = await servico.findAll({where: { data: result.ano+'-'+result.mes+'-'+result.dia+'-'+' '+result.hora+':'+result.min+":00"}})
-        serv.data= {data: result.novoano+'-'+result.novomes+'-'+result.novodia+'-'+' '+result.novohora+':'+result.novoomin+":00"}
+        let serv = await servico.findAll({where: { data: result.data, hora: result.hora}})
+        serv.data = result.data;
+        serv.hora = result.hora;
         await serv.save();
         retorno = true;
     }catch(erro){
