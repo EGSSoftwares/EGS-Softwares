@@ -41,11 +41,12 @@ async function addPet (result) {
     console.log("Entrou no add cliente de cliente.js");
     var retorno=false;
     //const pessoa = cliente.cliente.findAll( { where: { CPF: result.CPF }})[0];
+    console.log(result);
     await pet.create({
         nomePet: result.nomePet,  //cria novo cliente com informacoes do fomulario
-        Especie: result.especie,
-        Peso: result.peso,
-        Raca: result.raca,
+        Especie: result.especiePet,
+        Peso: result.pesoPet,
+        Raca: result.racaPet,
         Existente: true,
         CPF: result.CPF,
     }).then(retorno = true )
@@ -77,9 +78,9 @@ async function attPet(pkpet, req) {
         await db.sync;
         const procura = await pet.findByPk(pkpet);
         procura.nomePet= req.nomePet,  //cria novo cliente com informacoes do fomulario
-        procura.Especie= req.especie,
-        procura.Peso= req.peso,
-        procura.Raca= req.raca,
+        procura.Especie= req.especiePet,
+        procura.Peso= req.pesoPet,
+        procura.Raca= req.racaPet,
         await procura.save();
         retorno = true;
     }catch(erro){

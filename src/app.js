@@ -10,6 +10,7 @@ const cliente = require('../src/Model/cliente');
 const res = require('express/lib/response');
 const clienteRoute = require('../src/Routes/clienteRoute');
 const petRoute = require('../src/Routes/petRoute');
+const servicoRoute = require('../src/Routes/servicoRoute');
 
 var user = null;
 
@@ -78,5 +79,6 @@ app.get('/view/tela_erro.html', (req, res)=> {      //tela de sucesso
 
 app.use("/cliente", clienteRoute)
 app.use("/pet", petRoute)
+app.use("/servico", servicoRoute)
 console.log("Server inicializado");
 app.listen(5000, () => console.log("ouvindo porta 5000"));

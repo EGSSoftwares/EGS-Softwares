@@ -24,8 +24,10 @@ function sendTelaPet(req, res){
 
 async function addPet(req, res){
     console.log("entrou no add pet, petcrtl.js");
+    console.log(req.body);
     let redirect ='/view/tela_erro.html';
-    const dono = cliente.cliente.findAll( {where : { CPF: req.body.CPF, Existente: true}});
+    const dono = await cliente.cliente.findAll( { where : {CPF: req.body.CPF, Existente: true } } );
+    console.log(dono[0]);
     if(dono!=null && await pet.addPet(req.body)){
         redirect ='/view/tela_sucesso.html';
     }
