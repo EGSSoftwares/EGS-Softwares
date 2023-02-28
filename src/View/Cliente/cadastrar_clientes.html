@@ -23,22 +23,22 @@
                 <form action="addCliente" method="POST">
                     <div class="teste">
                         <label for="fname">Nome:</label> <br>
-                        <input type="text" id="nomePessoa" name="nomePessoa" ><br> <br>
+                        <input type="text" id="nomePessoa" name="nomePessoa" placeholder="Apenas letras" required name="nomePessoa" autocomplete="off" pattern="[Aa-zZ\s]+$" title="Somente letras entre a e z" ><br> <br>
                         <label for="lname">CPF:</label> <br>
-                        <input type="text" id="CPF" name="CPF" ><br><br>
+                        <input type="text" id="CPF" name="CPF" placeholder="Apenas numeros" required name="CPF" autocomplete="off" pattern="[0-9]+$" title="Somente numeros" maxlength="11" minlength="11" ><br><br>
                         <label for="fname">Telefone:</label> <br>
-                        <input type="text" id="tel" name="tel" ><br> <br>
+                        <input type="text" id="tel" name="tel" placeholder="Apenas numeros" required name="tel" autocomplete="off" pattern="[0-9]+$" title="Somente numeros" minlength="9" maxlength="13"> <br> <br>
                         <label for="lname">Cidade:</label> <br>
-                        <input type="text" id="cid" name="cid" ><br><br>
+                        <input type="text" id="cid" name="cid" placeholder="Apenas letras" required name="cid" autocomplete="off" pattern="[Aa-zZ\s]+$" title="Somente letras entre a e z"><br><br>
                     </div>
 
                     <div class="teste">
                         <label for="fname">Bairro:</label> <br>
-                        <input type="text" id="bairro" name="bairro" ><br> <br>
+                        <input type="text" id="bairro" name="bairro" placeholder="Apenas letras" required name="bairro" autocomplete="off" pattern="[Aa-zZ\s]+$" title="Somente letras entre a e z"><br> <br>
                         <label for="lname">Rua:</label> <br>
-                        <input type="text" id="rua" name="rua" ><br><br>
+                        <input type="text" id="rua" name="rua" placeholder="Apenas letras" required name="rua" autocomplete="off" pattern="[Aa-zZ\s]+$" title="Somente letras entre a e z"><br><br>
                         <label for="fname">Numero:</label> <br>
-                        <input type="text" id="num" name="num" ><br> <br>
+                        <input type="number" id="num" name="num" placeholder="Apenas numeros" required name="nome" autocomplete="off" pattern="[0-9]+$" title="Somente numeros"><br> <br>
                     </div>
 
                     <div id="botao">
