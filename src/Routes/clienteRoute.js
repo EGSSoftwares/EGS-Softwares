@@ -19,21 +19,21 @@ router.get("/cadastrar_clientes.html", clientecrtl.sendTelaCadCliente)
 
 router.post('/addCliente', clientecrtl.addCliente)
 
-router.get('/cliente/excluir_cliente.html', clientecrtl.sendTelaExcluir)
+router.get('/excluir_cliente.html', clientecrtl.sendTelaExcluir)
 
-router.post('/cliente/excluirClientePorCpf', clientecrtl.sendTelaExcluir2)
+router.post('/excluirClientePorCpf', clientecrtl.sendTelaExcluir2)
 
-router.post('/cliente/deleteCliente', clientecrtl.deleteCliente)  
+router.post('/deleteCliente', clientecrtl.deleteCliente)  
 
-router.get('/cliente/pagina_buscar_cliente.html', clientecrtl.sendTelaBuscarCliente)
+router.get('/pagina_buscar_cliente.html', clientecrtl.sendTelaBuscarCliente)
 
-router.post('/cliente/exibirCliente', clientecrtl.mostrarClientes)
+router.post('/exibirCliente', clientecrtl.mostrarClientes)
 
 
-router.get('/cliente/solicitar_cpf.html', clientecrtl.solicitarCpf)
+router.get('/solicitar_cpf.html', clientecrtl.solicitarCpf)
 
-router.post('/cliente/atualizar_cliente.ejs', clientecrtl.formattCliente)
+router.post('/atualizar_cliente.ejs', clientecrtl.formattCliente)
 
-router.post('/cliente/attCliente', clientecrtl.attCliente )
+router.post('/attCliente', clientecrtl.attCliente )
 
 module.exports = router;
