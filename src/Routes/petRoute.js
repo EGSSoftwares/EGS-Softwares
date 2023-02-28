@@ -24,12 +24,12 @@ router.post('/excluipetPorCpf', petcrtl.sendTelaExcluir2)
 
 router.post('/deletePet', petcrtl.deletePet)  
 
-router.get('/pagina_buscar_pet.html', petcrtl.sendTelaBuscarPet)
+router.get('/visualizar_pet.html', petcrtl.sendTelaBuscarPet)
 
 router.post('/exibirPet', petcrtl.exibirPet)
 
 
-router.get('/solicitar_cpf_e_nome.html', petcrtl.solicitarCpfENome)
+router.get('/atualizar_pet_pagina_busca.html', petcrtl.solicitarCpfENome)
 
 router.post('/atualizar_pet.ejs', petcrtl.formattPet)
 
