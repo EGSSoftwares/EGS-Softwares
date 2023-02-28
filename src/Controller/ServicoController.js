@@ -12,13 +12,14 @@ function sendCadastro(req, res){
     res.sendFile('/src/view/Servico/cadastra_servico.html', {root: '..'})
 }
 function addServico(req, res){
-    const dono = cliente.cliente.findAll({where: { nomePessoa: req.body.nomePessoa, Existente: true}});
+    const dono = cliente.cliente.findAll({where: { nomePessoa: req.body.CPF, Existente: true}});
     if(dono!=null){
         const bicho = pet.pet.findAll({ where: { nomePet: req.body.nomePet, Existente: true, CPF: dono.CPF}});
         if(bicho!=null){
             if(pet.addServico(
                 {
-                    data: req.body.dataServico.value+req.body.horaServico,
+                    data: req.body.dataServico,
+                    hora: req.body.horaServico,
                     CPF: dono.CPF,
                     idPet: bicho[0].idPet,
                     valorCobrado: req.body.valor,

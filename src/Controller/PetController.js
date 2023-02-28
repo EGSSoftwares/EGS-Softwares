@@ -19,7 +19,7 @@ function sendTelacrtlPet(req, res){
 }
 
 function sendTelaPet(req, res){
-    res.sendFile('/src/view/Pet/cadastrarPet.html', {root: '..'});
+    res.sendFile('/src/view/Pet/cadastrar_pet.html', {root: '..'});
 }
 
 async function addPet(req, res){

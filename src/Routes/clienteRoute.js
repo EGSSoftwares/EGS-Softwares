@@ -15,9 +15,9 @@ router.get('/view/cliente/controle_cliente.html', clientecrtl.sendTelaCrtlClient
 router.get('/', clientecrtl.sendTelaCrtlCliente)
 //router.post('/view/controle_cliente.html', clientecrtl.sendTelaCrtlCliente)
 
-router.get("/cliente/cadastrar_clientes.html", clientecrtl.sendTelaCadCliente)
+router.get("/cadastrar_clientes.html", clientecrtl.sendTelaCadCliente)
 
-router.post('/cliente/ddCliente', clientecrtl.addCliente)
+router.post('/addCliente', clientecrtl.addCliente)
 
 router.get('/cliente/excluir_cliente.html', clientecrtl.sendTelaExcluir)
 
