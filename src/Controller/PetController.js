@@ -71,9 +71,9 @@ async function exibirPet(req, res){
     if(dono!=null){
         const bicho = await pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente:true}});
         if(bicho!=null){
-            res.render("/pet/informacoes2_pet", { pets: bicho, pessoa: dono});
+            res.render("/src/view/pet/informacoes2_pet", { pets: bicho, pessoa: dono});
         }else{
-            res.redirect("/view/tela_erro.html");
+            res.redirect("/src/view/tela_erro.html");
         }
     }else{
         res.redirect("/view/tela_erro.html");
