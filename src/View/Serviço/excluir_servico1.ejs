@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/src/View/CSS/style.css">
+        <link rel="stylesheet" href="/src/view/css/style.css">
         <style>
             
             table, td, th {
@@ -33,35 +33,44 @@
                 </a>
             </nav>
             <div class="conteiner">  
-                <img src="imagens/logo.jpg" alt="logo Banho e Tosa">
+                <img src="../imagens/logo.jpg" alt="logo Banho e Tosa">
                 <h1>Excluir cliente</h1>
             </div>
         </header>
         <main>    
             <table>
                 <tr class="tt">
-                <th class="tt"> Nome </th>
-                <th class="tt"> CPF </th>
-                <th class="tt"> Telefone </th>
+                <th class="tt"> Tipo de serviço </th>
+                <th class="tt"> Hora </th>
+                <th class="tt"> data </th>
+                <th class="tt"> Nome do Pet</th>
+                <th class="tt"> Valor</th>
                 <tr>
-                    <td><%= cliente.nomePessoa %></td>
-                    <td><%= cliente.CPF %> </td>
-                    <td><%= cliente.Telefone %></td>
+                    <td><%= servico.tipoServico %></td>
+                    <td><%= servico.hora %> </td>
+                    <td><%= servico.data %> </td>
+                    <td><%= pet.nomePet %></td>
+                    <td><%= servico.valorCobrado %></td>
+
                 </tr>
                 <tr>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
             </table>
-            <form action="/cliente/deleteCliente" method="POST">
+            <form action="/servico/deleteServico" method="POSt"> 
                 <div id="botao">
-                    <input type="hidden" value="<%=cliente.idPessoa%>" id= "pkpessoa"name="pkpessoa">
-                    <input class="botao" type="submit" value="Confirmar">
+                    <input type="hidden" name="hora" id="hora" value="<%= servico.hora %>"  >
+                    <input type="hidden" name="data" id="data" value="<<%= servico.data %>"  >
+                    <button class="botao" type="submit" > Confirmar </button> 
                     <div class="botaoe">
-                        <a style="text-decoration: none; border: 3px solid #F55B04;" class="botao" role="button" href="controle_cliente.html">Cancelar</a>
+                        <a style="text-decoration: none; border: 3px solid #F55B04;" class="botao" role="button" href="controle_servico.html">Cancelar</a>
                     </div>
                 </div>
+
             </form>
         </main>
     </body>

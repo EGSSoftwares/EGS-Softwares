@@ -22,15 +22,15 @@
         </header>
 
         <main >
-            <form action="/attServico" method="POST">
+            <form action="/servico/attServico" method="POST">
                 <pre>
                     <div class="teste">
                     ' <label for="tipoServico">Tipo de serviço:</label> <br>
-                        <input type="text" id="tipoServico" name="tipoServico"  value='<%= servico.tipoServico%>'><br> <br>
+                        <input type="text" id="tipoServico" name="tipoServico"  value='<%= servico.tipo %>'><br> <br>
                         <label for="data">Data do serviço:</label> <br>
                         <input type="date" id="data" name="data" value='<%= servico.data %>' ><br><br>
                         <label for="horaServico">Hora do serviço:</label> <br>
-                        <input type="text" id="horaServico" name="horaServico" value='<%= servico.hora%>' ><br> <br>
+                        <input type="time" id="hora" name="hora" value='<%= servico.hora %>' ><br> <br>
                         <label for="valor">Valor cobrado:</label> <br>
                         <input type="text" id="valor" name="valor" value='<%= servico.valor %>' ><br><br>'
                     </div>
@@ -40,14 +40,19 @@
                         <input type="text" id="nomeCliente" name="nomeCliente" value='<%= servico.nomePessoa %>'><br> <br>
                         <label for="nomePet">Nome do Pet:</label> <br>
                         <input type="text" id="nomePet" name="nomePet" value='<%= servico.nomePet %>'><br><br>
-                        <label for="nomeFunc">NomeFunc:</label> <br>
-                        <input type="text" id="nomeFunc" name="nomeFunc" value='<%= servico.nomeFunc %>' ><br> <br>
                     </div>
                 </pre>
 
                 <div id="botao">
+
+                    <input type="hidden" name="reqhora" id="reqhora" value="<%= servico.hora %>"  >
+                    <input type="hidden" name="reqdata" id="reqdata" value="<<%= servico.data %>"  >
                     <input class="botao" type="submit" value="  Alterar  ">
-                    <button class="botao" type="submit" formaction="controle_cliente.html">Cancelar</button>
+
+                    <div class="botaoe">
+                        <a style="text-decoration: none; border: 3px solid #F55B04;" class="botao" role="button" href="controle_serviço.html">Cancelar</a>
+                    </div>
+
                 </div>
             </form>
         </main>

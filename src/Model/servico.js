@@ -77,7 +77,7 @@ async function attServico (result){ //atualiza servico pra outra data
     retorno = false;
     try{
         await db.sync();
-        let serv = await servico.findAll({where: { data: result.data, hora: result.hora}})
+        let serv = await servico.findOne({where: { data: result.reqdata, hora: result.reqhora}})
         serv.data = result.data;
         serv.hora = result.hora;
         await serv.save();

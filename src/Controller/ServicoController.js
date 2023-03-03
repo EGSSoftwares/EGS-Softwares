@@ -14,6 +14,8 @@ function sendCadastro(req, res){
 function sendGerenciamento(req, res){
     res.sendFile('/src/view/gerenciamento.html', {root: '..'})
 }
+
+
 async function addServico(req, res){
     const dono = await cliente.cliente.findAll({where: { CPF: req.body.CPF, Existente: true}});
     if(dono!=undefined){
@@ -50,14 +52,43 @@ function sendExcluir(req, res){
 async function sendExcluirejs(req,res){
     var procura = await servico.servico.findOne({where: {data: req.body.data, hora: req.body.hora}});
     var bicho = await pet.pet.findByPk(procura.idPet);
-    res.render('../view/serviço/visualizar_servico2.ejs', { servico: procura, pet: bicho });
+    res.render('../view/serviço/excluir_servico1.ejs', { servico: procura, pet: bicho });
 }
 
 function sendVisualizar(req, res){
     res.sendFile('/src/view/Serviço/visualizar_servico1.html', {root: '..'});
 }
 
-async function sendVisualizarejs(req, res){
+async function sendResultVisualizar(req, res){
+    const procura = await servico.servico.findAll({ where: { hora: req.body.hora, data: req.body.data}});
+    const bichos = [];
+    for(let i=0; i<procura.length; i++){
+        bichos[i] = await pet.pet.findByPk(procura[i].idPet);
+    }
+    if(procura != []){
+        res.render('../view/serviço/visualizar_servico2.ejs', { servico: procura, bicho: bichos});
+    } else {
+        res.redirect("/view/tela_erro.html");
+    }
+}
+
+async function deleteServico(req, res){
+    if(await servico.deleteServico(req.body)){
+        res.redirect("/view/tela_sucesso.html");
+    }else {
+        res.redirect("/view/tela_erro.html");
+    }
+}
+
+async function attServico(req, res){
+    if(await servico.attServico(req.body)){
+        res.redirect("/view/tela_sucesso.html")
+    } else {
+        res.redirect("/view/tela_erro.html");
+    }
+}
+
+async function attejs(req, res){
     data=req.body.data
     console.log(data)
     const serv = await servico.servico.findOne( { where: { data: req.body.data}});
@@ -66,8 +97,9 @@ async function sendVisualizarejs(req, res){
         const bicho = await pet.pet.findByPk(serv.idPet);
         var dono = await cliente.cliente.findAll({where: { CPF: serv.CPF}});
         dono= dono[0];
-        res.render("../view/serviço/visualizar_servico2.ejs", 
+        res.render("../view/serviço/alterar_servico.ejs", 
         { servico: {
+            nomePessoa: dono.nomePessoa,
             tipo: serv.tipoServico,
             hora: serv.hora,
             data: serv.data,
@@ -78,13 +110,19 @@ async function sendVisualizarejs(req, res){
         res.redirect("/view/tela_erro.html");
     }
 }
+
+
+
+function sendBuscasAlterar(req, res){
+    res.sendFile('/src/view/Serviço/busca_att.html', {root: '..'});
+}
 function sendAlterar(req, res){
     res.sendFile('/src/view/Serviço/alterar_servico.html', {root: '..'});
 }
 async function sendAlterarejs(req, res){
     
 }
-module.exports={telaControle, sendCadastro, addServico, sendExcluir, sendExcluirejs, sendVisualizar, sendVisualizarejs,
-                sendAlterar, sendGerenciamento
+module.exports={telaControle, sendCadastro, addServico, sendExcluir, sendExcluirejs, sendVisualizar, attejs,
+                sendAlterar, sendGerenciamento, deleteServico, sendResultVisualizar, sendBuscasAlterar, attServico
                 }
 

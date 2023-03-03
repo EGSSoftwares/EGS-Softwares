@@ -26,7 +26,7 @@
             <form action="atualizar_cliente.ejs" method="POST">
                 <div class="excluir">
                     <label for="CPF" >CPF :</label> <br>
-                    <input type="text" id="CPF" name="CPF" ><br> <br>
+                    <input placeholder="Apenas numeros" required name="CPF"  pattern="[0-9]+$" title="Somente numeros" type="text" id="CPF" name="CPF" ><br> <br>
                 </div>
                 <div class="botaoe">
                     <button class="botao" type="submit" >Buscar</button>

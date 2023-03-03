@@ -64,12 +64,15 @@
                 <td><%= pessoa[0].CPF %></td>
                 <td><%= pessoa[0].Numero %></td>
             </table>
-            <div id="botao">
-                <form action = "deletePet" method = "POST">
+            <form action = "deletePet" method = "POST">
+                <div id="botao">
                     <input class="botao" type="submit" value="Confirmar">
-                </form>
-                <button class="botao" type="submit" formaction="controle_cliente.html" value="cancelar">Cancelar</button>
-            </div>
+
+                    <div class="botaoe">
+                        <a style="text-decoration: none; border: 3px solid #F55B04;" class="botao" role="button" href="controle_pet.html">Cancelar</a>
+                    </div>
+                </div>
+            </form>
         </main>
     </body>
 </html>

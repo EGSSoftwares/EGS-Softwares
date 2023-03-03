@@ -14,6 +14,9 @@ router.get('/imagens/logo.jpg', petcrtl.sendlogo)
 router.get('/', petcrtl.sendTelacrtlPet)
 //router.post('/view/controle_cliente.html', clientecrtl.sendTelaCrtlCliente)
 
+router.get('/controle_pet.html', petcrtl.sendTelacrtlPet)
+
+
 router.get("/cadastrar_pet.html", petcrtl.sendTelaPet)
 
 router.post('/addpet', petcrtl.addPet)

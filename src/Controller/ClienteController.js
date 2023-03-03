@@ -2,6 +2,7 @@
 const { redirect } = require("express/lib/response");
 const cliente = require("../../src/Model/cliente");
 const db = require('../../src/Persistence/db');
+const teste= require('../../src/Service/service_cliente');
 
 function sendcss(req, res) {
     res.sendFile('/src/view/css/style.css', { root: '..' });
@@ -38,7 +39,7 @@ async function addCliente(req, res, next) {
     console.log(redirect);
     if (result != null) {
         var add=false;
-        add= await cliente.addCliente(result);
+        add= await teste.addCliente(result);
         console.log(add);
         if(add==false){            
             console.log("entrou no add=false");
@@ -93,7 +94,7 @@ async function mostrarClientes(req, res) {
     console.log(req.body);
     procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa, Existente: true} }); //faz select
     console.log(procura);
-    if (procura != null) {
+    if (procura != []) {
         res.render("../view/cliente/informacoes_cliente.ejs", { pessoas: procura }); //exibe clientes com o nome
     }else{
         res.redirect('/view/tela_erro.html');

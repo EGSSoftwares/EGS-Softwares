@@ -25,10 +25,10 @@
             <p class="texto_explicativo">Digite o nome do pet que <br> voce deseja realizar a alteração</p>
             <form action="atualizar_pet.ejs" method="POST">
                 <div class="excluir">
-                    <label for="NomePet" >Nome :</label> <br>
-                    <input type="text" id="nomePet" name="nomePet" ><br> <br>
+                    <label for="fname" >Nome :</label> <br>
+                    <input  placeholder="Apenas letras" required name="nomePessoa"  pattern="[Aa-zZ\s]+$" title="Somente letras entre a e z" type="text" id="nomePet" name="nomePet" ><br> <br>
                     <label for="NomePet" >CPF :</label> <br>
-                    <input type="text" id="CPF" name="CPF" ><br> <br>
+                    <input placeholder="Apenas numeros" required name="CPF"  pattern="[0-9]+$" title="Somente numeros" type="text" id="CPF" name="CPF" ><br> <br>
                 </div>
                 <div class="botaoe">
                     <button class="botao" type="submit" >Buscar</button>

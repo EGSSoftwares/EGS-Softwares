@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/src/view/css/style.css">
-        <title>Visualizar Serviço</title>
+        <title>Alterar Serviço</title>
     </head>
 
     <body>
@@ -17,13 +17,13 @@
             </nav>
             <div class="conteiner">  
                 <img src="../imagens/logo.jpg" alt="logo Banho e Tosa">
-                <h1>Visualizar Serviço</h1>
+                <h1>Alterar Serviço</h1>
             </div>
         </header>
 
         <main >
             <p class="texto_explicativo">Digite a data do serviço que <br> voce deseja visualizar</p>
-            <form action="visualizar_servico2.ejs" method="POST">
+            <form action="/servico/atualizar_servico.ejs" method="POST">
                 <div class="excluir">
                     <label for="data" >Data :</label> <br>
                     <input type="date" id="data" name="data" ><br> <br>

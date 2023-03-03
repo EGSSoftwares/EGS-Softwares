@@ -24,7 +24,7 @@
             <form action="exibirCliente" method="POST">
                 <div class="excluir">
                     <label for="nomePessoa" >Nome :</label> <br>
-                    <input type="text" id="nomePessoa" name="nomePessoa" ><br> <br>
+                    <input  placeholder="Apenas letras" required name="nomePessoa"  pattern="[Aa-zZ\s]+$" title="Somente letras entre a e z" type="text" id="nomePessoa" name="nomePessoa" ><br> <br>
                 </div>
                 <div class="botaoe">
                     <button class="botao" type="submit" >Buscar</button>
