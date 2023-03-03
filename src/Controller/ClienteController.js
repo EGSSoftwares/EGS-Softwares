@@ -55,6 +55,11 @@ function sendTelaExcluir(req, res) {
     res.sendFile('/src/view/cliente/excluir_cliente.html', { root: '..' });
     console.log("entrou no excluir cliente");
 }
+function sendTelaControle(req,res){
+    res.sendFile('/src/view/cliente/controle_cliente.html', { root: '..' });
+    console.log("entrou no controle cliente");
+
+}
 
 var lastpkpessoa = -1;
 async function sendTelaExcluir2(req, res) {
