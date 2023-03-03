@@ -26,6 +26,10 @@ function sendTelaCadCliente(req, res) {   //cadastrando clientes
     res.sendFile('/src/view/cliente/cadastrar_clientes.html', { root: '..' });  //envia formulario
     console.log("entrou cadastrar_cliente");
 }
+
+function sendInicio(req, res){
+    res.sendFile('/src/view/gerenciamento.html');
+}
 async function addCliente(req, res, next) {
     console.log("entrou add cliente");
     const result = req.body;
@@ -82,7 +86,7 @@ async function mostrarClientes(req, res) {
     await db.sync;
     console.log("Entrou no exibirCliente");
     console.log(req.body);
-    procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa } }); //faz select
+    procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa, Existente: true} }); //faz select
     console.log(procura);
     if (procura != null) {
         res.render("../view/cliente/informacoes_cliente.ejs", { pessoas: procura }); //exibe clientes com o nome
@@ -126,4 +130,4 @@ async function attCliente(req, res) {
 
 module.exports = { attCliente, formattCliente, solicitarCpf, mostrarClientes, sendTelaBuscarCliente, deleteCliente,
     sendTelaExcluir2, addCliente, sendTelaExcluir, sendTelaCadCliente, sendTelaCrtlCliente, sendTelaErro,
-    sendTelaSucesso, sendcss, sendlogo }
+    sendTelaSucesso, sendcss, sendlogo, sendInicio }

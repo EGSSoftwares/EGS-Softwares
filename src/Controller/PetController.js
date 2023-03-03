@@ -41,10 +41,10 @@ var idpet = -1;
 async function sendTelaExcluir2(req, res){
     const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
     if(dono!=null){
-        const bicho = await pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente: true}});
+        const bicho = await pet.pet.findAll( { where : { CPF: dono[0].CPF, nomePet: req.body.nomePet, Existente: true}});
         if(bicho!=null){
             idpet = bicho[0].idPet;
-            res.render("/pet/excluir_pet22", { pets: bicho, pessoa: dono});
+            res.render("../view/pet/excluir_pet22", { pets: bicho, pessoa: dono});
         }else{
             res.redirect("/view/tela_erro.html");
         }
@@ -54,7 +54,7 @@ async function sendTelaExcluir2(req, res){
 }
 async function deletePet(req, res){
     let redirect ='/view/tela_erro.html';
-    if(idPet>0){
+    if(idpet>0){
         if( await pet.excluirPet(idpet)){
             idpet=-1;
             redirect = '/view/tela_sucesso.html';
@@ -67,10 +67,13 @@ function sendTelaBuscarPet(req, res){
 }
 
 async function exibirPet(req, res){
-    const dono = await cliente.cliente.findOne( { where : { CPF: req.body.CPF }});
+    console.log("entrou no exibir pet");
+    const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
     if(dono!=null){
-        const bicho = await pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente:true}});
+        console.log("entrou dono");
+        const bicho = await pet.pet.findAll( { where : { CPF: req.body.CPF, nomePet: req.body.nomePet, Existente:true}});
         if(bicho!=null){
+            console.log("entrou pet");
             res.render("../view/pet/informacoes_pet2.ejs", { pets: bicho, pessoa: dono});
         }else{
             res.redirect("/src/view/tela_erro.html");
@@ -86,9 +89,9 @@ function  solicitarCpfENome(req, res){
 async function formattPet(req, res){
     console.log(req.body.CPF)
     const CPF= req.body.CPF
-    const dono = await cliente.cliente.findOne( { where : { CPF: CPF }});
+    const dono = await cliente.cliente.findOne( { where : { CPF: req.body.CPF }});
     if(dono!=null){
-        const bicho = await pet.pet.findAll( { where : { CPF: dono.CPF, nomePet: req.body.nomePet, Existente: true}});
+        const bicho = await pet.pet.findAll( { where : { CPF: req.body.CPF, nomePet: req.body.nomePet, Existente: true}});
         console.log(bicho)
         if(bicho!=null){
             console.log("entrou bicho")

@@ -45,9 +45,9 @@
                         <th> Contato </th>
                     <tr>
                         <td><%= pets[i].nomePet %></td>
-                        <td><%= pets[i].racaPet %></td>
-                        <td><%= pets[i].pesoPet% ></td>
-                        <td><%= pets[i].especiePet% ></td>
+                        <td><%= pets[i].Raca %></td>
+                        <td><%= pets[i].Peso %></td>
+                        <td><%= pets[i].Especie %></td>
                         <td><%= pessoa[0].nomePessoa %></td>
                         <td><%= pessoa[0].Numero %></td>
                     </tr>
@@ -55,8 +55,8 @@
             <% }%>
 
             <div class="botao">
-                <form>
-                    <input class="botao" type="button" value= "Voltar" formaction= "controle_cliente.html"></input>
+                <form >
+                    <a href="../pet/" class="botao" role="button" type="submit">Confirmar</a> 
                 </form>
             </div>
         </main>

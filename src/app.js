@@ -49,6 +49,10 @@ app.get('/', (req, res) => {        //inicia login
     res.sendFile('/src/view/login.html', { root: '..' });
 })
 
+app.get('/inicio', (req, res) => {
+    res.sendFile('/src/view/gerenciamento.html', { root: '..' }) ;
+})
+
 //faz verificacao de usuario
 app.post('/login', (req, res) => {
     console.log("entrou login");

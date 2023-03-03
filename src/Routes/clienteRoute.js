@@ -29,6 +29,8 @@ router.get('/pagina_buscar_cliente.html', clientecrtl.sendTelaBuscarCliente)
 
 router.post('/exibirCliente', clientecrtl.mostrarClientes)
 
+router.get('/inicio', clientecrtl.sendInicio)
+
 
 router.get('/solicitar_cpf.html', clientecrtl.solicitarCpf)
 
