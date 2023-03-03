@@ -32,7 +32,7 @@ async function addServico(req, res){
                     valorCobrado: req.body.valor,
                     despeza: 0
                 })){
-                res.redirect("/view/tela_sucesso");
+                res.redirect("/view/tela_sucesso.html");
             }else{
                 res.redirect("/view/tela_erro.html");
             }
@@ -47,13 +47,16 @@ async function addServico(req, res){
 function sendExcluir(req, res){
     res.sendFile('/src/view/Serviço/excluir_servico_pela_data.html', {root: '..'})
 }
-function sendExcluirejs(req,res){
-    
+async function sendExcluirejs(req,res){
+    var procura = await servico.servico.findOne({where: {data: req.body.data, hora: req.body.hora}});
+    var bicho = await pet.pet.findByPk(procura.idPet);
+    res.render('../view/serviço/visualizar_servico2.ejs', { servico: procura, pet: bicho });
 }
 
 function sendVisualizar(req, res){
     res.sendFile('/src/view/Serviço/visualizar_servico1.html', {root: '..'});
 }
+
 async function sendVisualizarejs(req, res){
     data=req.body.data
     console.log(data)

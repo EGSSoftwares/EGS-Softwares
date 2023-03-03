@@ -28,7 +28,7 @@
     <body>
         <header>
             <nav>
-                <a href="gerenciamento.html"> 
+                <a href="/inicio"> 
                     INICIO
                 </a>
             </nav>
@@ -42,15 +42,15 @@
                 <tr class="tt">
                 <th class="tt"> Tipo de serviço </th>
                 <th class="tt"> Hora </th>
-                <th class="tt"> Nome do Pet </th>
-                <th class="tt"> Funcionario</th>
+                <th class="tt"> data </th>
+                <th class="tt"> Nome do Pet</th>
                 <th class="tt"> Valor</th>
                 <tr>
-                    <td><%= servico.tipo %></td>
-                    <td><%= servico.data %> </td>
+                    <td><%= servico.tipoServico %></td>
                     <td><%= servico.hora %> </td>
-                    <td><%= servico.nomePet %></td>
-                    <td><%= servico.valor %></td>
+                    <td><%= servico.data %> </td>
+                    <td><%= pet.nomePet %></td>
+                    <td><%= servico.valorCobrado %></td>
 
                 </tr>
                 <tr>

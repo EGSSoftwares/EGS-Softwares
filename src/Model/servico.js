@@ -45,16 +45,17 @@ async function addServico( result){     //cria servico
     console.log(result);
     try{
         await db.sync();
-        servico.create({
+        await servico.create({
+            tipoServico: result.tipoServico,
             //data: result.ano+'-'+result.mes+'-'+result.dia+'-'+' '+result.hora+':'+result.min+":00",
             data: result.data,
             hora: result.hora,
             CPF: result.CPF,
             //idPet: await pet.findAll({where: { CPF: result.CPF, nomePet: result.nomePet, Existente: true}})[0].idPet,
             idPet: result.idPet,
-            valorCobrado: result.valor,
-            tipoServico: result.tipoServicos
-        })
+            valorCobrado: result.valorCobrado,
+            despeza: result.despeza
+        });
         retorno= true;
     }catch(erro){
 
