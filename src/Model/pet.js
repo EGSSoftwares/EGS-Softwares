@@ -74,15 +74,18 @@ async function addPet (result) {
 };
 async function attPet(pkpet, req) {
     retorno = false;
+    console.log("entrou att pet pet.js");
     try{
         await db.sync;
-        const procura = await pet.findByPk(pkpet);
-        procura.nomePet= req.nomePet,  //cria novo cliente com informacoes do fomulario
-        procura.Especie= req.especiePet,
-        procura.Peso= req.pesoPet,
-        procura.Raca= req.racaPet,
+        var procura = await pet.findByPk(pkpet);
+        console.log(procura);
+        procura.nomePet= req.body.nomePet,  //cria novo cliente com informacoes do fomulario
+        procura.Especie= req.body.especie,
+        procura.Peso= req.body.peso,
+        procura.Raca= req.body.raca,
+        console.log(procura);
         await procura.save();
-        retorno = true;
+        return true;
     }catch(erro){
     }
     return retorno;

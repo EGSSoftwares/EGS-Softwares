@@ -123,6 +123,7 @@ async function formattCliente(req, res) {
         res.redirect('/view/tela_erro.html');
     }
 }
+
 async function attCliente(req, res) {
     var redirect ="/view/tela_erro.html";
     if(await cliente.attCliente (lastpkpessoa, req)){

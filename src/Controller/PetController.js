@@ -90,18 +90,19 @@ async function formattPet(req, res){
     console.log(req.body.CPF)
     const CPF= req.body.CPF
     const dono = await cliente.cliente.findOne( { where : { CPF: req.body.CPF }});
-    if(dono!=null){
-        const bicho = await pet.pet.findAll( { where : { CPF: req.body.CPF, nomePet: req.body.nomePet, Existente: true}});
+    if(dono!=undefined){
+        const bicho = await pet.pet.findOne( { where : { CPF: req.body.CPF, nomePet: req.body.nomePet, Existente: true}});
         console.log(bicho)
         if(bicho!=null){
-            console.log("entrou bicho")
-            idpet = bicho[0].idPet;
-            res.render("../view/pet/atualizar_pet.ejs", { pet: bicho[0] });
+            console.log("entrou bicho");
+            idpet = bicho.idPet;
+            res.render("../view/pet/atualizar_pet.ejs", { pet: bicho });
         }else{
             res.redirect("/view/tela_erro.html");
         }
     }else{
         res.redirect("/view/tela_erro.html");
+        
     }
 }
 async function attPet (req, res){

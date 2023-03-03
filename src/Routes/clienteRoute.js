@@ -38,7 +38,6 @@ router.post('/atualizar_cliente.ejs', clientecrtl.formattCliente)
 
 router.post('/attcliente', clientecrtl.attCliente )
 
-router.get('/controle_cliente.html', clientecrtl.sendTelaControle)
 
 
 module.exports = router;
