@@ -58,14 +58,15 @@
                     <td colspan="2"></td>
                 </tr>
             </table>
-    
-            <div id="botao">
-                <form action="/cliente/deleteCliente" method="POST">
+            <form action="/cliente/deleteCliente" method="POST">
+                <div id="botao">
                     <input type="hidden" value="<%=cliente.idPessoa%>" id= "pkpessoa"name="pkpessoa">
                     <input class="botao" type="submit" value="Confirmar">
-                </form>
-                <button class="botao" type="submit" formaction="controle_cliente.html" value="cancelar">Cancelar</button>
-            </div>
+                    <div class="botaoe">
+                        <a style="text-decoration: none; border: 3px solid #F55B04;" class="botao" role="button" href="controle_cliente.html">Cancelar</a>
+                    </div>
+                </div>
+            </form>
         </main>
     </body>
 </html>
