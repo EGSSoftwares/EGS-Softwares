@@ -16,6 +16,8 @@ router.get('/', clientecrtl.sendTelaCrtlCliente)
 //router.post('/view/controle_cliente.html', clientecrtl.sendTelaCrtlCliente)
 
 router.get("/cadastrar_clientes.html", clientecrtl.sendTelaCadCliente)
+router.get('/controle_cliente.html', clientecrtl.sendTelaCrtlCliente)
+
 
 router.post('/addCliente', clientecrtl.addCliente)
 
