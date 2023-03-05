@@ -32,4 +32,14 @@ async function addCliente(result) {
         return false;
 }
 
-module.exports = { addCliente};
+async function verificaBusca(result) {
+    console.log("entrou verifica cliente Service");
+    console.log(result)
+    if (result.CPF!=null) {
+        return true; 
+    }else{
+        return false;
+    }
+}
+
+module.exports = { addCliente, verificaBusca};

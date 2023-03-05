@@ -2,7 +2,7 @@
 const { redirect } = require("express/lib/response");
 const cliente = require("../../src/Model/cliente");
 const db = require('../../src/Persistence/db');
-const teste= require('../../src/Service/service_cliente');
+const service= require('../../src/Service/service_cliente');
 
 function sendcss(req, res) {
     res.sendFile('/src/view/css/style.css', { root: '..' });
@@ -39,7 +39,7 @@ async function addCliente(req, res, next) {
     console.log(redirect);
     if (result != null) {
         var add=false;
-        add= await teste.addCliente(result);
+        add= await service.addCliente(result);
         console.log(add);
         if(add==false){            
             console.log("entrou no add=false");
@@ -106,9 +106,11 @@ function solicitarCpf(req, res) {
 }
 
 async function formattCliente(req, res) {
-    const procura = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
-    console.log(procura);
-    if(procura!=null){
+    const result= null;
+    result=req.body;
+    if(service.validaBusca(result)){
+        const procura = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
+        console.log(procura);
         const pessoa = {
             nomePessoa: procura[0].nomePessoa,
             num: procura[0].Numero,
