@@ -44,4 +44,14 @@ async function verificaBusca(result) {
     }
 }
 
-module.exports = { addCliente, verificaBusca};
+async function verificaBuscaNome(result) {
+    console.log("entrou verifica nome cliente Service");
+    console.log(result)
+    if (result.nomePessoa!= null) {
+        return true; 
+    }else{
+        return false;
+    }
+}
+
+module.exports = { addCliente, verificaBusca, verificaBuscaNome};
