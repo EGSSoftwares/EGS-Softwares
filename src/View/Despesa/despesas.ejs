@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/src/View/CSS/style.css">
+        <style>
+            
+            table, td, th {
+                border:solid 2px black;
+                padding:20px 50px;
+                margin: 80px auto;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            
+            th {
+                background-color:#F2784B;
+                
+            } 
+            .tt{
+                font-weight: bolder;
+            } 
+            
+        </style>
+        <title>Controle de Despesas </title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="/inicio"> 
+                    INICIO
+                </a>
+            </nav>
+            <div class="conteiner">  
+                <img src="imagens/logo.jpg" alt="logo Banho e Tosa">
+                <h1> Controle de Despesas </h1>
+            </div>
+        </header>
+        <main>    
+            <table>
+                <tr class="tt">
+                <th class="tt"> Data Inico </th>
+                <th class="tt"> Data Fim </th>
+                <th class="tt"> Valor Arrecadado </th>
+                <th class="tt"> Despesa </th>
+                <th class="tt"> Lucro </th>
+                <tr>
+                    <td><%=  %></td>
+                    <td><%=  %> </td>
+                    <td><%=  %></td>
+                    <td><%=  %> </td>
+                    <td><%=  %> </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <form action=" # " method="POST">
+                <div class="botaoe">
+                    <a style="text-decoration: none; border: 3px solid #F55B04;" class="botao" role="button" href="../gerenciamento.html">Voltar</a>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>

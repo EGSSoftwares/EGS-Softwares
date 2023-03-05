@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/src/view/css/style.css">
+        <title> Controle de despesas </title>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <a href="/inicio"> 
+                    INICIO
+                </a>
+            </nav>
+            <div class="conteiner">  
+                <img src="../imagens/logo.jpg" alt="logo Banho e Tosa">
+                <h1>Controle <br> Despesa </h1>
+            </div>
+        </header>
+
+        <main >
+            <p class="texto_explicativo">Digite o período de tempo que<br> voce deseja visualizar suas despesas</p>
+            <form action="/despesa/exibirDespesa.ejs" method="POST">
+                <div class="excluir">
+                    <label for="data" >Data Inicial:</label> <br>
+                    <input type="date" id="dataini" name="dataini" ><br> <br>
+
+                    <label for="hora" >Data Final :</label> <br>
+                    <input type="date" id="datafim" name="horafim" ><br> <br>
+                </div>
+                <div class="botaoe">
+                    <button class="botao" type="submit" >Buscar</button>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>
