@@ -54,7 +54,7 @@ async function addServico( result){     //cria servico
             //idPet: await pet.findAll({where: { CPF: result.CPF, nomePet: result.nomePet, Existente: true}})[0].idPet,
             idPet: result.idPet,
             valorCobrado: result.valorCobrado,
-            despeza: result.despeza
+            despesa: result.despesa
         });
         retorno= true;
     }catch(erro){

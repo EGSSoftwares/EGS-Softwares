@@ -20,26 +20,26 @@ function sendTelaDataDespesa(req, res){
 }
 
 async function exibirDespesa(req, res) {
-    var procura = null;
     await db.sync();
     console.log("Entrou no exibirDespesa");
-    console.log(req.body);
+    //onsole.log(req.body);
     const procura = await despesa.relatorio(req);
     console.log(procura);
-    let valor = 0, lucro =0, despesa=0;
-    for(let i=0; i<procura.length; i++){
-        valor+=procura[i].valorCobrado;
-        despesa= procura[i].despesa
-    }
-    lucro= valor-despesa;
+    let valor = 0, lucro =0, gastos=0;
+    if(procura!=[] && procura!=undefined)
+        for(let i=0; i<procura.length; i++){
+            valor+=procura[i].valorCobrado;
+            gastos+= procura[i].despesa;
+        }
+    lucro= valor -gastos;
     const relatorio= {
         dataini: req.body.dataini,
-        datafim: req.body.fim,
+        datafim: req.body.datafim,
         valor: valor,
-        despesa: despesa,
+        despesa: gastos,
         lucro: lucro
     }
-    res.render("../view/cliente/informacoes_cliente.ejs", { relatorio: relatorio});
+    res.render("../view/Despesa/despesas.ejs", { relatorio: relatorio});
 }
 
 module.exports= {

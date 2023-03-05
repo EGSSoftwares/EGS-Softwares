@@ -32,7 +32,7 @@ async function addServico(req, res){
                     CPF: req.body.CPF,
                     idPet: bicho[0].idPet,
                     valorCobrado: req.body.valor,
-                    despeza: 0
+                    despesa: req.body.valor*0.45
                 })){
                 res.redirect("/view/tela_sucesso.html");
             }else{

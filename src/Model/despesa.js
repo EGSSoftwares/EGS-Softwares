@@ -1,13 +1,13 @@
 const sequelize = require('sequelize');
 const db = require('../Persistence/db'); //importando a persistencia
 const servico = require('../../src/Model/servico');
-
+const { Op } = require("sequelize");
 async function relatorio(req) {
-    console.log(req);
+    //console.log(req);
     return await servico.servico.findAll({
         where: {
             data: {
-                $between: [req.body.dataInicial, req.body.dataFinal]
+                [Op.between]: [req.body.dataini, req.body.datafim]
             }
         }
     });
@@ -34,4 +34,4 @@ const despesa = db.define('Despesa' , (
         },
 
 }));
-module.exports = {relatorio};
+module.exports = {relatorio, despesa};
