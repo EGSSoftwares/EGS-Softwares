@@ -64,13 +64,18 @@ function sendTelaControle(req,res){
 
 var lastpkpessoa = -1;
 async function sendTelaExcluir2(req, res) {
-
-    clientefordelete = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
-    if(clientefordelete!=null){
-        lastpkpessoa = clientefordelete.idPessoa;
-        res.render('../view/cliente/mostrar_cliente.ejs', { cliente: clientefordelete[0] });
+    const result= null;
+    result= req.body;
+    if(service.validaBusca(result)){
+        clientefordelete = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
+        if(clientefordelete!=null){
+            lastpkpessoa = clientefordelete.idPessoa;
+            res.render('../view/cliente/mostrar_cliente.ejs', { cliente: clientefordelete[0] });
+        }else{
+            res.redirect("/view/tela_erro.html");
+        }
     }else{
-        res.redirect("/view/tela_erro.html");
+        res.redirect("/view/tela_erro.html")
     }
 }
 
@@ -88,17 +93,24 @@ function sendTelaBuscarCliente(req, res) {
 }
 
 async function mostrarClientes(req, res) {
-    var procura = null;
     await db.sync;
     console.log("Entrou no exibirCliente");
     console.log(req.body);
-    procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa, Existente: true} }); //faz select
-    console.log(procura);
-    if (procura != []) {
-        res.render("../view/cliente/informacoes_cliente.ejs", { pessoas: procura }); //exibe clientes com o nome
+    const result= null;
+    result=req.body;
+    if(service.verificaBuscaNome(result)){
+        var procura = null;
+        procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa, Existente: true} }); //faz select
+        console.log(procura);
+        if (procura != []) {
+            res.render("../view/cliente/informacoes_cliente.ejs", { pessoas: procura }); //exibe clientes com o nome
+        }else{
+            res.redirect('/view/tela_erro.html');
+        }
     }else{
-        res.redirect('/view/tela_erro.html');
+        res.redirect('/view/tela_erro.html')
     }
+    
 }
 
 function solicitarCpf(req, res) {
@@ -128,11 +140,17 @@ async function formattCliente(req, res) {
 }
 
 async function attCliente(req, res) {
+    const result=null;
+    result= req.body;
     var redirect ="/view/tela_erro.html";
-    if(await cliente.attCliente (lastpkpessoa, req)){
-        redirect="/view/tela_sucesso.html";
+    if(service.addCliente(result)){
+        if(await cliente.attCliente (lastpkpessoa, req)){
+            redirect="/view/tela_sucesso.html";
+        }else{
+            redirect= "/view/tela_erro.html";
+        }
     }else{
-        redirect= "/view/tela_erro.html";
+        redirect = "/view/tela_erro.html";
     }
     res.redirect(redirect);
 }
