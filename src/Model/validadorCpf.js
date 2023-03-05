@@ -24,5 +24,5 @@ function validaCpf( cpf){
     }
     return false;
 }
-
+//console.log(validaCpf("23186525543"));
 module.exports= { validaCpf}
