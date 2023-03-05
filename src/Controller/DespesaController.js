@@ -14,7 +14,7 @@ function sendlogo(req, res) {
     res.sendFile('/src/view/imagens/logo.jpg', { root: '..' });
 }
 
-function sendTelaDataDespesa(res){
+function sendTelaDataDespesa(req, res){
 
     res.sendFile('src/view/data_despesa.html', { root: '..' })
     console.log("Despesa OK")
@@ -26,5 +26,5 @@ async function exibirDespesa(req, res) {
     await db.sync;
     console.log("Entrou no exibirDespesa");
     console.log(req.body);
-    procura = await despesa.despesa.findAll({ where: { nomePessoa: req.body.nomePessoa } });
+    procura = await despeza.relatorio(req);
 }
