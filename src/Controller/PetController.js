@@ -1,7 +1,7 @@
 const { redirect } = require("express/lib/response");
-const pet = require("../../src/Model/pet");
+const pet = require("../../src/Persistence/pet");
 const db = require('../../src/Persistence/db');
-const cliente = require("../../src/Model/cliente");
+const cliente = require("../Persistence/cliente");
 const { Sequelize } = require("sequelize");
 function sendcss(req, res) {
     res.sendFile('/src/view/style.css', { root: '..' });

@@ -1,7 +1,7 @@
 
 const { redirect } = require("express/lib/response");
 const db = require('../../src/Persistence/db');
-const despesa = require("../../src/Model/despesa");
+const despesa = require("../../src/Persistence/despesa");
 const { Sequelize } = require("sequelize");
 
 

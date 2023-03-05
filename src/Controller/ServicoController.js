@@ -1,9 +1,9 @@
 const { redirect } = require("express/lib/response");
-const pet = require("../../src/Model/pet");
+const pet = require("../../src/Persistence/pet");
 const db = require('../../src/Persistence/db');
-const cliente = require("../../src/Model/cliente");
+const cliente = require("../Persistence/cliente");
 const { Sequelize } = require("sequelize");
-const servico = require("../../src/Model/servico");
+const servico = require("../../src/Persistence/servico");
 
 function telaControle(req, res){
     res.sendFile('/src/view/Serviço/controle_serviço.html', {root: '..'})
