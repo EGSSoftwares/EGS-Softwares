@@ -25,7 +25,7 @@ const servico = db.define('Servico', {
         type: sequelize.DOUBLE,
         allowNull: true,
     },
-    despeza: {
+    despesa: {
         type: sequelize.DOUBLE,
         allowNull: true
     }
