@@ -25,5 +25,4 @@ function validaCpf( cpf){
     return false;
 }
 
-//console.log(validaCpf("35756629327"));
-//console.log(validaCpf("123"));
+module.exports= { validaCpf}
