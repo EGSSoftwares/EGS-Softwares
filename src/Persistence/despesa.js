@@ -14,24 +14,4 @@ async function relatorio(req) {
 }
 
 
-const despesa = db.define('Despesa' , (
-    {
-        dia: {
-            type: sequelize.INTEGER,
-            allowNull: false,
-        },
-        mes: {
-            type: sequelize.STRING,
-            allowNull: false,
-        },
-        ano: {
-            type: sequelize.INTEGER,
-            allowNull: false,
-        },
-        custo: {
-            type: sequelize.DOUBLE,
-            allowNull: false
-        },
-
-}));
 module.exports = {relatorio, despesa};

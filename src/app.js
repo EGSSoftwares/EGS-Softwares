@@ -6,7 +6,7 @@ const path = require('path');
 const ejs = require('ejs');
 console.log("req bd");
 const db = require('../src/Persistence/db');
-const cliente = require('../src/Model/cliente'); 
+const cliente = require('./Persistence/cliente'); 
 const res = require('express/lib/response');
 const clienteRoute = require('../src/Routes/clienteRoute');
 const petRoute = require('../src/Routes/petRoute');

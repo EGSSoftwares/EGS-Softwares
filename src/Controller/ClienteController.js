@@ -1,6 +1,6 @@
 
 const { redirect } = require("express/lib/response");
-const cliente = require("../../src/Model/cliente");
+const cliente = require("../Persistence/cliente");
 const db = require('../../src/Persistence/db');
 const service= require('../../src/Service/service_cliente');
 
