@@ -38,6 +38,7 @@ async function addCliente(req, res, next) {
     var redirect = '/view/tela_erro.html';
     console.log(redirect);
     if (service.addCliente(result)) {
+        console.log("Entrou if antes")
         var add=false;
         add= await cliente.addCliente(result);
         console.log(add);
@@ -64,9 +65,8 @@ function sendTelaControle(req,res){
 
 var lastpkpessoa = -1;
 async function sendTelaExcluir2(req, res) {
-    const result= null;
-    result= req.body;
-    if(service.validaBusca(result)){
+    const result= req.body
+    if(service.verificaBusca(result)){
         clientefordelete = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
         if(clientefordelete!=null){
             lastpkpessoa = clientefordelete.idPessoa;
@@ -96,8 +96,7 @@ async function mostrarClientes(req, res) {
     await db.sync;
     console.log("Entrou no exibirCliente");
     console.log(req.body);
-    const result= null;
-    result=req.body;
+    const result= req.body;
     if(service.verificaBuscaNome(result)){
         var procura = null;
         procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa, Existente: true} }); //faz select
@@ -118,9 +117,8 @@ function solicitarCpf(req, res) {
 }
 
 async function formattCliente(req, res) {
-    const result= null;
-    result=req.body;
-    if(service.validaBusca(result)){
+    const result= req.body;
+    if(service.verificaBusca(result)){
         const procura = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
         console.log(procura);
         const pessoa = {
@@ -140,11 +138,12 @@ async function formattCliente(req, res) {
 }
 
 async function attCliente(req, res) {
-    const result=null;
-    result= req.body;
+    const result= req.body;
     var redirect ="/view/tela_erro.html";
     if(service.addCliente(result)){
+        console.log("entrou if att")
         if(await cliente.attCliente (lastpkpessoa, req)){
+            console.log("entrou if 2 att")
             redirect="/view/tela_sucesso.html";
         }else{
             redirect= "/view/tela_erro.html";
