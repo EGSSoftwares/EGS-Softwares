@@ -13,11 +13,16 @@ async function addCliente(result) {
     console.log("entrou add cliente Service");
     console.log(result)
     if (result.nomePessoa!=null) {
-        if( validador.validaCpf(result.CPF)){
+        if( result.CPF != null/*validador.validaCpf(result.CPF)*/){
             if(result.tel > 0 ){
-                if(result.bairro!= null){
-                    if(result.num>0){
+                console.log("Testou telefone")
+                if(result.bairro != null){
+                    console.log("Testou bairro")
+                    console.log(result.num)
+                    if(result.num > 0){
+                        console.log("testou numero")
                         if(result.rua!= null){
+                            console.log("testou rua")
                             if(result.cid!= null){
                                 return true;
                                 
