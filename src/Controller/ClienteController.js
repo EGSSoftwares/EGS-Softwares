@@ -128,11 +128,17 @@ async function formattCliente(req, res) {
 }
 
 async function attCliente(req, res) {
+    const result=null;
+    result= req.body;
     var redirect ="/view/tela_erro.html";
-    if(await cliente.attCliente (lastpkpessoa, req)){
-        redirect="/view/tela_sucesso.html";
+    if(service.addCliente(result)){
+        if(await cliente.attCliente (lastpkpessoa, req)){
+            redirect="/view/tela_sucesso.html";
+        }else{
+            redirect= "/view/tela_erro.html";
+        }
     }else{
-        redirect= "/view/tela_erro.html";
+        redirect = "/view/tela_erro.html";
     }
     res.redirect(redirect);
 }
