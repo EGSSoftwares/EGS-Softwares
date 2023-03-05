@@ -1,7 +1,7 @@
 
 const { redirect } = require("express/lib/response");
 const db = require('../../src/Persistence/db');
-const servico = require("../../src/Model/servico");
+const despesa = require("../../src/Model/despesa");
 const { Sequelize } = require("sequelize");
 
 
@@ -15,8 +15,7 @@ function sendlogo(req, res) {
 }
 
 function sendTelaDataDespesa(req, res){
-
-    res.sendFile('src/view/data_despesa.html', { root: '..' })
+    res.sendFile('/src/view/Despesa/despesas.html', { root: '..' })
     console.log("Despesa OK")
 
 }

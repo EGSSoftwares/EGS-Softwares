@@ -19,10 +19,7 @@ async function addCliente(result) {
                     if(result.num>0){
                         if(result.rua!= null){
                             if(result.cid!= null){
-                                return true
-                                var add=false;
-                                add= await cliente.addCliente(result);
-                                console.log(add)
+                                return true;
                                 
                             }
                         }

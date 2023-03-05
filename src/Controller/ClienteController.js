@@ -37,9 +37,9 @@ async function addCliente(req, res, next) {
     console.log(result);
     var redirect = '/view/tela_erro.html';
     console.log(redirect);
-    if (result != null) {
+    if (service.addCliente(result)) {
         var add=false;
-        add= await service.addCliente(result);
+        add= await cliente.addCliente(result);
         console.log(add);
         if(add==false){            
             console.log("entrou no add=false");
