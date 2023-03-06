@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
 const db = require('../Persistence/db'); //importando a persistencia
-const servico = require('../../src/Model/servico');
+const servico = require('../../src/Persistence/servico');
 const { Op } = require("sequelize");
 async function relatorio(req) {
     //console.log(req);
@@ -14,4 +14,4 @@ async function relatorio(req) {
 }
 
 
-module.exports = {relatorio, despesa};
+module.exports = {relatorio};

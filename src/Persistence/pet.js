@@ -1,5 +1,5 @@
 const sequelize = require('sequelize');
-const cliente = require('../../src/Model/cliente'); 
+const cliente = require('../../src/Persistence/cliente'); 
 
 const db = require('../Persistence/db'); //importando a persistencia
 

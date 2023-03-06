@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
-const cliente = require('../../src/Model/cliente'); 
-const pet = require('../../src/Model/pet'); 
+const cliente = require('../../src/Persistence/cliente'); 
+const pet = require('../../src/Persistence/pet'); 
 const db = require('../Persistence/db'); //importando a persistencia
 const servico = db.define('Servico', {
     idServico: { 
