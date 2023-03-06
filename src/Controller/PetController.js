@@ -89,9 +89,9 @@ function  solicitarCpfENome(req, res){
 async function formattPet(req, res){
     console.log(req.body.CPF)
     const CPF= req.body.CPF
-    const dono = await cliente.cliente.findOne( { where : { CPF: req.body.CPF }});
-    if(dono.lenght!=0){
-        const bicho = await pet.pet.findOne( { where : { CPF: req.body.CPF, nomePet: req.body.nomePet, Existente: true}});
+    const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
+    if(dono.length!=0){
+        const bicho = await pet.pet.findAll( { where : { CPF: req.body.CPF, nomePet: req.body.nomePet, Existente: true}});
         console.log(bicho)
         if(bicho.length!=0){
             console.log("entrou bicho");
