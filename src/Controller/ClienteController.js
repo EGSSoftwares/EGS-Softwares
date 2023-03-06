@@ -133,6 +133,8 @@ async function formattCliente(req, res) {
             }
             lastpkpessoa = procura[0].idPessoa;
             res.render("../view/cliente/atualizar_cliente", { pessoa: pessoa });//gera formulario preenchido
+        }else{
+            res.redirect('/view/tela_erro.html');
         }
     }else{
         res.redirect('/view/tela_erro.html');
