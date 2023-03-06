@@ -96,7 +96,7 @@ async function formattPet(req, res){
         if(bicho.length!=0){
             console.log("entrou bicho");
             idpet = bicho.idPet;
-            res.render("../view/pet/atualizar_pet.ejs", { pet: bicho });
+            res.render("../view/pet/atualizar_pet.ejs", { pet: bicho[0] });
         }else{
             res.redirect("/view/tela_erro.html");
         }
