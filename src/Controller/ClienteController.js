@@ -68,7 +68,7 @@ async function sendTelaExcluir2(req, res) {
     const result= req.body
     if(service.verificaBusca(result)){
         clientefordelete = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
-        if(clientefordelete!=null){
+        if(clientefordelete!=[]){
             lastpkpessoa = clientefordelete.idPessoa;
             res.render('../view/cliente/mostrar_cliente.ejs', { cliente: clientefordelete[0] });
         }else{
@@ -121,17 +121,19 @@ async function formattCliente(req, res) {
     if(service.verificaBusca(result)){
         const procura = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
         console.log(procura);
-        const pessoa = {
-            nomePessoa: procura[0].nomePessoa,
-            num: procura[0].Numero,
-            tel: procura[0].Telefone,
-            bai: procura[0].Bairro,
-            log: procura[0].Logradouro,
-            cpf: procura[0].CPF,
-            cid: procura[0].Cidade
+        if(procura!=[]){
+            const pessoa = {
+                nomePessoa: procura[0].nomePessoa,
+                num: procura[0].Numero,
+                tel: procura[0].Telefone,
+                bai: procura[0].Bairro,
+                log: procura[0].Logradouro,
+                cpf: procura[0].CPF,
+                cid: procura[0].Cidade
+            }
+            lastpkpessoa = procura[0].idPessoa;
+            res.render("../view/cliente/atualizar_cliente", { pessoa: pessoa });//gera formulario preenchido
         }
-        lastpkpessoa = procura[0].idPessoa;
-        res.render("../view/cliente/atualizar_cliente", { pessoa: pessoa });//gera formulario preenchido
     }else{
         res.redirect('/view/tela_erro.html');
     }
