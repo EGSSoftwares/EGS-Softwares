@@ -56,14 +56,17 @@
                     </tr>
                 </table>
             <% }%>
-            <table>
-                <th> Nome do dono </th>
-                <th> CPF do dono </th>
-                <th> Contato </th></th>
-                <td><%= pessoa[0].nomePessoa %></td>
-                <td><%= pessoa[0].CPF %></td>
-                <td><%= pessoa[0].Numero %></td>
-            </table>
+                <table>
+                    <tr>
+                        <th> Nome do dono </th>
+                        <th> CPF do dono </th>
+                        <th> Contato </th></th>
+                    <tr>
+                        <td><%= pessoa[0].nomePessoa %></td>
+                        <td><%= pessoa[0].CPF %></td>
+                        <td><%= pessoa[0].Numero %></td>
+                    </tr>
+                </table>
             <form action = "deletePet" method = "POST">
                 <div id="botao">
                     <input class="botao" type="submit" value="Confirmar">
