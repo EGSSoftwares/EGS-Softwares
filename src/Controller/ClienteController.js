@@ -68,7 +68,8 @@ async function sendTelaExcluir2(req, res) {
     const result= req.body
     if(service.verificaBusca(result)){
         clientefordelete = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
-        if(clientefordelete!=[]){
+        console.log("resultado é " + clientefordelete);
+        if(clientefordelete.length!=0 && clientefordelete!=undefined){
             lastpkpessoa = clientefordelete.idPessoa;
             res.render('../view/cliente/mostrar_cliente.ejs', { cliente: clientefordelete[0] });
         }else{
@@ -101,7 +102,7 @@ async function mostrarClientes(req, res) {
         var procura = null;
         procura = await cliente.cliente.findAll({ where: { nomePessoa: req.body.nomePessoa, Existente: true} }); //faz select
         console.log(procura);
-        if (procura != []) {
+        if (procura.length !=0 && procura!=undefined) {
             res.render("../view/cliente/informacoes_cliente.ejs", { pessoas: procura }); //exibe clientes com o nome
         }else{
             res.redirect('/view/tela_erro.html');
@@ -121,7 +122,7 @@ async function formattCliente(req, res) {
     if(service.verificaBusca(result)){
         const procura = await cliente.cliente.findAll({ where: { CPF: req.body.CPF } });
         console.log(procura);
-        if(procura!=[]){
+        if(procura.length!=0 && procura!=undefined){
             const pessoa = {
                 nomePessoa: procura[0].nomePessoa,
                 num: procura[0].Numero,
