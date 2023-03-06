@@ -28,7 +28,7 @@ async function addPet(req, res){
     let redirect ='/view/tela_erro.html';
     const dono = await cliente.cliente.findAll( { where : {CPF: req.body.CPF, Existente: true } } );
     console.log(dono[0]);
-    if(dono!=null && await pet.addPet(req.body)){
+    if(dono.length!=0 && await pet.addPet(req.body)){
         redirect ='/view/tela_sucesso.html';
     }
     res.redirect(redirect);
@@ -40,9 +40,9 @@ function sendTelaExcluir(req, res){
 var idpet = -1;
 async function sendTelaExcluir2(req, res){
     const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
-    if(dono!=null){
+    if(dono.length!=0){
         const bicho = await pet.pet.findAll( { where : { CPF: dono[0].CPF, nomePet: req.body.nomePet, Existente: true}});
-        if(bicho!=null){
+        if(bicho.length!=0){
             idpet = bicho[0].idPet;
             res.render("../view/pet/excluir_pet22", { pets: bicho, pessoa: dono});
         }else{
@@ -69,10 +69,10 @@ function sendTelaBuscarPet(req, res){
 async function exibirPet(req, res){
     console.log("entrou no exibir pet");
     const dono = await cliente.cliente.findAll( { where : { CPF: req.body.CPF }});
-    if(dono!=null){
+    if(dono.length!=0){
         console.log("entrou dono");
         const bicho = await pet.pet.findAll( { where : { CPF: req.body.CPF, nomePet: req.body.nomePet, Existente:true}});
-        if(bicho!=null){
+        if(bicho.length!=0){
             console.log("entrou pet");
             res.render("../view/pet/informacoes_pet2.ejs", { pets: bicho, pessoa: dono});
         }else{
@@ -90,10 +90,10 @@ async function formattPet(req, res){
     console.log(req.body.CPF)
     const CPF= req.body.CPF
     const dono = await cliente.cliente.findOne( { where : { CPF: req.body.CPF }});
-    if(dono!=undefined){
+    if(dono.lenght!=0){
         const bicho = await pet.pet.findOne( { where : { CPF: req.body.CPF, nomePet: req.body.nomePet, Existente: true}});
         console.log(bicho)
-        if(bicho!=null){
+        if(bicho.length!=0){
             console.log("entrou bicho");
             idpet = bicho.idPet;
             res.render("../view/pet/atualizar_pet.ejs", { pet: bicho });
