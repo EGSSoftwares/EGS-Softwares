@@ -51,9 +51,13 @@ function sendExcluir(req, res) {
 }
 async function sendExcluirejs(req, res) {
     var procura = await servico.servico.findOne({ where: { data: req.body.data, hora: req.body.hora } });
-    var bicho = await pet.pet.findByPk(procura.idPet);
-    if (procura != null && bicho != null) {
-        res.render('../view/serviço/excluir_servico1.ejs', { servico: procura, pet: bicho });
+    if (procura != null) {
+        var bicho = await pet.pet.findByPk(procura.idPet);
+        if (bicho != null) {
+            res.render('../view/serviço/excluir_servico1.ejs', { servico: procura, pet: bicho });
+        } else {
+            res.redirect("/view/tela_erro.html");
+        }
     } else {
         res.redirect("/view/tela_erro.html");
     }
@@ -69,7 +73,7 @@ async function sendResultVisualizar(req, res) {
     for (let i = 0; i < procura.length; i++) {
         bichos[i] = await pet.pet.findByPk(procura[i].idPet);
     }
-    if (procura.length!= 0) {
+    if (procura.length != 0) {
         res.render('../view/serviço/visualizar_servico2.ejs', { servico: procura, bicho: bichos });
     } else {
         res.redirect("/view/tela_erro.html");
@@ -100,18 +104,22 @@ async function attejs(req, res) {
     if (serv != null) {
         const bicho = await pet.pet.findByPk(serv.idPet);
         var dono = await cliente.cliente.findAll({ where: { CPF: serv.CPF } });
-        dono = dono[0];
-        res.render("../view/serviço/alterar_servico.ejs",
-            {
-                servico: {
-                    nomePessoa: dono.nomePessoa,
-                    tipo: serv.tipoServico,
-                    hora: serv.hora,
-                    data: serv.data,
-                    nomePet: bicho.nomePet,
-                    valor: serv.valorCobrado
-                }
-            })
+        if (dono.length != 0 && bicho!=null) {
+            dono = dono[0];
+            res.render("../view/serviço/alterar_servico.ejs",
+                {
+                    servico: {
+                        nomePessoa: dono.nomePessoa,
+                        tipo: serv.tipoServico,
+                        hora: serv.hora,
+                        data: serv.data,
+                        nomePet: bicho.nomePet,
+                        valor: serv.valorCobrado
+                    }
+                })
+        } else {
+            res.redirect("/view/tela_erro.html");
+        }
     } else {
         res.redirect("/view/tela_erro.html");
     }
