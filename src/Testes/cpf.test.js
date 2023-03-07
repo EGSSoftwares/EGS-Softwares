@@ -23,9 +23,6 @@ test('testa string vazia', ()=>{
     expect(validaCpf.validaCpf("")).toBe(false);
 });
 
-test('testa string vazia', ()=>{
-    expect(validaCpf.validaCpf("")).toBe(false);
-});
 
 test('testa undefined', ()=>{
     expect(validaCpf.validaCpf(undefined)).toBe(false);
