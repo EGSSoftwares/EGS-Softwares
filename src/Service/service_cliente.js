@@ -3,7 +3,9 @@ const { redirect } = require("express/lib/response");
 const db = require('../../src/Persistence/db');
 const cliente = require("../Persistence/cliente");
 const validador = require("../../src/Model/validadorCpf.js");
-function addCliente(result) {
+
+
+function addCliente(result) { //verifica se os campos recebidos na pagina cadastrar e atualizar clientes são validos
     console.log("entrou add cliente Service");
     console.log(result)
     if(result==[] || result==undefined || result==null){
@@ -33,7 +35,7 @@ function addCliente(result) {
     return false;
 }
 
-function verificaBusca(result) {
+function verificaBusca(result) { // verifica se o CPF digitado na busca é valido
     console.log("entrou verifica cliente Service");
     console.log(result);
     if (validador.validaCpf(result.CPF)) {
@@ -43,7 +45,7 @@ function verificaBusca(result) {
     }
 }
 
-function verificaBuscaNome(result) {
+function verificaBuscaNome(result) { // verifica se o nome digitado na busca é valido
     console.log("entrou verifica nome cliente Service");
     console.log(result)
     if (result.nomePessoa!= null && result.nomePessoa!=undefined) {

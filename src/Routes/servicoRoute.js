@@ -2,6 +2,7 @@ const express = require('express');
 const servicocrtl = require("../Controller/servicoController");
 const router=express.Router();
 
+//ROTAS SERVIÇO
 router.get("/", servicocrtl.telaControle);
 router.get('/controle_serviço.html', servicocrtl.telaControle)
 
