@@ -3,13 +3,7 @@ const { redirect } = require("express/lib/response");
 const db = require('../../src/Persistence/db');
 const cliente = require("../Persistence/cliente");
 const validador = require("../../src/Model/validadorCpf.js");
-
-
-
-
-
-
-async function addCliente(result) {
+function addCliente(result) {
     console.log("entrou add cliente Service");
     console.log(result)
     if(result==[] || result==undefined || result==null){
@@ -39,7 +33,7 @@ async function addCliente(result) {
     return false;
 }
 
-async function verificaBusca(result) {
+function verificaBusca(result) {
     console.log("entrou verifica cliente Service");
     console.log(result);
     if (validador.validaCpf(result.CPF)) {
@@ -49,7 +43,7 @@ async function verificaBusca(result) {
     }
 }
 
-async function verificaBuscaNome(result) {
+function verificaBuscaNome(result) {
     console.log("entrou verifica nome cliente Service");
     console.log(result)
     if (result.nomePessoa!= null && result.nomePessoa!=undefined) {
