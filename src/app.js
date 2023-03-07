@@ -51,7 +51,12 @@ app.get('/', (req, res) => {        //inicia login
 })
 
 app.get('/inicio', (req, res) => {
-    res.sendFile('/src/view/gerenciamento.html', { root: '..' }) ;
+    if(user=='admin'){         //tela principal
+        res.sendFile('/src/view/gerenciamento.html', { root: '..' });
+    }else{
+        res.sendFile('/src/view/gerenciamento2.html', { root: '..' });
+
+    }
 })
 
 //faz verificacao de usuario
@@ -64,15 +69,22 @@ app.post('/login', (req, res) => {
         res.redirect('/view/gerenciamento.html');
     }else if(result.login == 'func' && result.senha=='func'){
         user = 'func';
-        res.redirect('/view/gerenciamento2.html');
+        res.redirect('/view/gerenciamento.html');
     }
     else {
         res.send("Usuario nao cadastrado");
     }
 })
 
-app.get('/view/gerenciamento.html', (req, res) => {         //tela principal
-    res.sendFile('/src/view/Gerenciamento.html', { root: '..' });
+app.get('/view/gerenciamento.html', (req, res) => {
+    console.log(user)
+    if(user=='admin'){         //tela principal
+        res.sendFile('/src/view/gerenciamento.html', { root: '..' });
+    }else{
+
+        res.sendFile('/src/view/gerenciamento2.html', { root: '..' });
+
+    }
 })
 
 app.get('/view/tela_sucesso.html', (req, res)=> {      //tela de sucesso
