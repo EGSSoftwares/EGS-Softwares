@@ -64,7 +64,7 @@ app.post('/login', (req, res) => {
         res.redirect('/view/gerenciamento.html');
     }else if(result.login == 'func' && result.senha=='func'){
         user = 'func';
-        res.redirect('/view/gerenciamento.html');
+        res.redirect('/view/gerenciamento2.html');
     }
     else {
         res.send("Usuario nao cadastrado");

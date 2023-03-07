@@ -1,4 +1,5 @@
-function validaCpf( cpf){
+
+function validaCpf( cpf){ // função para validar o cpf
     if(cpf!="" && cpf!=null && cpf!=undefined && cpf.length==11){
         let x= 0;
         let i, j;

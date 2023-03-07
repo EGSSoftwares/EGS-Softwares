@@ -20,7 +20,7 @@ Os comentários servem para explicar o código, ajudando o próprio desenvolvedo
 
 ## Identação
 
-Os código devem estar identados corretamente
+Os código devem estar identados corretamente, padrão de 3 espaços.
 
 ## Padrão de projeto utilizado
 

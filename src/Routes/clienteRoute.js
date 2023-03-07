@@ -13,7 +13,6 @@ router.get("/view/tela_erro.html", clientecrtl.sendTelaErro)
 
 router.get('/view/cliente/controle_cliente.html', clientecrtl.sendTelaCrtlCliente)
 router.get('/', clientecrtl.sendTelaCrtlCliente)
-//router.post('/view/controle_cliente.html', clientecrtl.sendTelaCrtlCliente)
 
 router.get("/cadastrar_clientes.html", clientecrtl.sendTelaCadCliente)
 router.get('/controle_cliente.html', clientecrtl.sendTelaCrtlCliente)
